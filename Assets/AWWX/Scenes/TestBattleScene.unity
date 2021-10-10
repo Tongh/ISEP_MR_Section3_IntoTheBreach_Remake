@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 26118614}
   - component: {fileID: 26118613}
   m_Layer: 0
-  m_Name: EVA-00
+  m_Name: EVA-01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2449,7 +2449,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &684447403
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2462,6 +2462,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 793eff5ddc01789419ffcaa856b11091, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  readdata:
+    MechasData: []
 --- !u!4 &684447404
 Transform:
   m_ObjectHideFlags: 0

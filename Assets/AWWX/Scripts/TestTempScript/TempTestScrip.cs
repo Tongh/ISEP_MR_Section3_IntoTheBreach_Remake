@@ -8,12 +8,14 @@ namespace OutOfTheBreach
     {
         //public MapMakerConfigData testdata;
         //public MapMakerConfigData readdata;
-        //string JsonFileFromPath;
+        public MechaConfigData readdata;
+        string JsonFileFromPath;
+        string filename = "MechasConfigData.json";
 
         // Start is called before the first frame update
         private void Start()
         {
-            //JsonFileFromPath = Application.dataPath + "/AWWX/Config/Json/MapMakerConfigData.json";
+            JsonFileFromPath = Application.dataPath + "/AWWX/Config/Json/" + filename;
 
             //{
             //    if (!File.Exists(JsonFileFromPath))
@@ -25,13 +27,13 @@ namespace OutOfTheBreach
             //    Debug.Log("Json Saved!");
             //}
 
-            //{
-            //    if (File.Exists(JsonFileFromPath))
-            //    {
-            //        string json = File.ReadAllText(JsonFileFromPath);
-            //        readdata = JsonUtility.FromJson<MapMakerConfigData>(json);
-            //    }
-            //}
+            {
+                if (File.Exists(JsonFileFromPath))
+                {
+                    string json = File.ReadAllText(JsonFileFromPath);
+                    readdata = JsonUtility.FromJson<MechaConfigData>(json);
+                }
+            }
         }
 
         IArchitecture IBelongToArchitecture.GetArchitecture()

@@ -6,4 +6,11 @@ namespace OutOfTheBreach
         Parabolic,
         SpecifyTarget
     }
+
+    public enum EEffectType
+    {
+        None,
+        Push,
+        Pull
+    }
 }

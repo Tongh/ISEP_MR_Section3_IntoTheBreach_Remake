@@ -12,8 +12,9 @@ namespace OutOfTheBreach
     public struct MechaData
     {
         public string MechaId;
-        public string MechaName;
-        public float Speed;
+        public string MechaDescription;
+        public int Speed;
         public int Life;
+        public bool bIsFlying;
     }
 }

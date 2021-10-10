@@ -1,0 +1,36 @@
+{
+    "EffectsData": [
+      {
+        "EffectId": "Push_Target_1",
+        "Description": "Push the target one square.",
+        "EffectType": 1,
+        "Damage": 0,
+        "Direction": "0",
+        "Value": 1
+      },
+      {
+        "EffectId": "Pull_Target_1",
+        "Description": "Pull the target one square.",
+        "EffectType": 2,
+        "Damage": 0,
+        "Direction": "1",
+        "Value": 1
+      },
+      {
+        "EffectId": "Shoot_Straightline_3",
+        "Description": "The damage caused to three units on a single at the same time.",
+        "EffectType": 0,
+        "Damage": 1,
+        "Direction": "0",
+        "Value": 2
+      },
+      {
+        "EffectId": "Explode_Target_4",
+        "Description": "Push away all units around and cause damage to them.",
+        "EffectType": 1,
+        "Damage": 1,
+        "Direction": "0123",
+        "Value": 2
+      }
+    ]
+}

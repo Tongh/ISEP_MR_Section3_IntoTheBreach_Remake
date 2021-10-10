@@ -1,0 +1,36 @@
+{
+    "AbilitiesData": [
+      {
+        "AbilityId": "Punch",
+        "Description": "Punch the target and push the target back one square.",
+        "AttackType": 0,
+        "Damage": 2,
+        "Range": 1,
+        "Effect": "Push_Target_1"
+      },
+      {
+        "AbilityId": "Attract",
+        "Description": "Pull the target towards your position.",
+        "AttackType": 1,
+        "Damage": 0,
+        "Range": 6,
+        "Effect": "Pull_Target_1"
+      },
+      {
+        "AbilityId": "Shoot",
+        "Description": "Deal damage to three targets along the way.",
+        "AttackType": 0,
+        "Damage": 2,
+        "Range": -1,
+        "Effect": "Shoot_Straightline_3"
+      },
+      {
+        "AbilityId": "Explode",
+        "Description": "Blast all four nearby units. Let them move and get hurt.",
+        "AttackType": 1,
+        "Damage": 0,
+        "Range": 6,
+        "Effect": "Explode_Target_4"
+      }
+    ]
+}

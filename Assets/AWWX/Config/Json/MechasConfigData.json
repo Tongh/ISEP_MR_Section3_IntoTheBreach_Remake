@@ -1,0 +1,32 @@
+{
+    "MechasData": [
+      {
+        "MechaId": "F91",
+        "MechaDescription": "Mecha that is good at close hand-to-hand combat",
+        "Speed": 6,
+        "Life": 3,
+        "bIsFlying": 0
+      },
+      {
+        "MechaId": "Siren",
+        "MechaDescription": "Mecha flying in the air for remote assistance",
+        "Speed": 7,
+        "Life": 2,
+        "bIsFlying": 1
+      },
+      {
+        "MechaId": "EVA-01",
+        "MechaDescription": "Mecha for long-range fire support",
+        "Speed": 6,
+        "Life": 3,
+        "bIsFlying": 0
+      },
+      {
+        "MechaId": "NameWhat",
+        "MechaDescription": "Mysterious mecha, very good at dividing the battlefield.",
+        "Speed": 7,
+        "Life": 2,
+        "bIsFlying": 0
+      }
+    ]
+}
