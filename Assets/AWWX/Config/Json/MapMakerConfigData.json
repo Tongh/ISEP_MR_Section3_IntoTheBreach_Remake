@@ -7,37 +7,27 @@
           {
             "GroundType": 0,
             "GroundName": "Desert",
-            "GroundMaterial": {
-              "instanceID": 15580
-            }
+            "GroundMaterial": "Materials/M_Ground_Sand"
           },
           {
             "GroundType": 1,
             "GroundName": "Mountain",
-            "GroundMaterial": {
-              "instanceID": 15750
-            }
+            "GroundMaterial": "Materials/M_Mountain_Sand"
           },
           {
             "GroundType": 2,
             "GroundName": "Building",
-            "GroundMaterial": {
-              "instanceID": 15760
-            }
+            "GroundMaterial": "Materials/M_Building_Sand"
           },
           {
             "GroundType": 3,
             "GroundName": "Water",
-            "GroundMaterial": {
-              "instanceID": 15782
-            }
+            "GroundMaterial": "Materials/M_Water_Sand"
           },
           {
             "GroundType": 4,
             "GroundName": "Dune",
-            "GroundMaterial": {
-              "instanceID": 15770
-            }
+            "GroundMaterial": "Materials/M_Special_Sand"
           }
         ]
       }

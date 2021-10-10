@@ -1,5 +1,6 @@
 using FrameworkDesign;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 namespace OutOfTheBreach
 {
@@ -36,7 +37,9 @@ namespace OutOfTheBreach
             {
                 if (GroundTypeInt == ((int)eachGround.GroundType))
                 {
-                    return eachGround.GroundMaterial;
+                    Material mat = Resources.Load(eachGround.GroundMaterial, typeof(Material)) as Material;
+                    Assert.IsNotNull(mat, "Material is null!");
+                    return mat;
                 }
             }
             Debug.LogError("Material is null! ");

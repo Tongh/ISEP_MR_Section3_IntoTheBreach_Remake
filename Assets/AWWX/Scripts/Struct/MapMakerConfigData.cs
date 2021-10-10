@@ -22,6 +22,6 @@ namespace OutOfTheBreach
     {
         public EMapGroundType GroundType;
         public string GroundName;
-        public Material GroundMaterial;
+        public string GroundMaterial;
     } 
 }
