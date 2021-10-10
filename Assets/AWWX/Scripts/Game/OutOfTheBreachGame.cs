@@ -9,6 +9,8 @@ namespace OutOfTheBreach
             RegisterModel<IMapModel>(new MapModel());
 
             RegisterSystem<IMapMakerSystem>(new MapMakerSystem());
+
+            RegisterUtility<IStorage>(new JsonStorage());
         }
     }
 }

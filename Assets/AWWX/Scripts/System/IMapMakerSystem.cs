@@ -5,17 +5,24 @@ namespace OutOfTheBreach
 {
     public interface IMapMakerSystem : ISystem
     {
+        Material GetMateirialByGround(int GroundTypeInt);
     }
 
     public class MapMakerSystem : AbstractSystem, IMapMakerSystem
     {
         private IMapModel mMapModel;
+        public MapMakerConfigData mapMakerConfigData;
+        public StyleMapConfigData styleMapConfigData;
 
         protected override void OnInit()
         {
             Debug.Log("Map Maker System Loaded");
 
             mMapModel = this.GetModel<IMapModel>();
+            var storage = this.GetUtility<IStorage>();
+
+            mapMakerConfigData = storage.LoadMapMakerConfigData();
+            styleMapConfigData = mapMakerConfigData.Styles[Random.Range(0, mapMakerConfigData.Styles.Length)];
 
             this.RegisterEvent<GamePrepareEvent>(e =>
             {
@@ -23,11 +30,22 @@ namespace OutOfTheBreach
             });
         }
 
+        public Material GetMateirialByGround(int GroundTypeInt)
+        {
+            foreach (MapGroundConfigData eachGround in styleMapConfigData.Grounds)
+            {
+                if (GroundTypeInt == ((int)eachGround.GroundType))
+                {
+                    return eachGround.GroundMaterial;
+                }
+            }
+            Debug.LogError("Material is null! ");
+            return null;
+        }
+
         public void RandomMap()
         {
             RandomGroundType();
-
-            //this.SendEvent<>();
         }
 
         private void RandomGroundType()

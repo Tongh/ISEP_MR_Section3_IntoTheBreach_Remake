@@ -1,0 +1,45 @@
+{
+    "Styles": [
+      {
+        "StyleId": "desert",
+        "StyleName": "Desert style battle field",
+        "Grounds": [
+          {
+            "GroundType": 0,
+            "GroundName": "Desert",
+            "GroundMaterial": {
+              "instanceID": 15580
+            }
+          },
+          {
+            "GroundType": 1,
+            "GroundName": "Mountain",
+            "GroundMaterial": {
+              "instanceID": 15750
+            }
+          },
+          {
+            "GroundType": 2,
+            "GroundName": "Building",
+            "GroundMaterial": {
+              "instanceID": 15760
+            }
+          },
+          {
+            "GroundType": 3,
+            "GroundName": "Water",
+            "GroundMaterial": {
+              "instanceID": 15782
+            }
+          },
+          {
+            "GroundType": 4,
+            "GroundName": "Dune",
+            "GroundMaterial": {
+              "instanceID": 15770
+            }
+          }
+        ]
+      }
+    ]
+}
