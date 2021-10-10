@@ -1,10 +1,11 @@
-namespace OutOfTheBreach.Enum
+namespace OutOfTheBreach
 {
     public enum EMapGroundType
     {
         Ground,
         Mountain,
-        House,
+        Building,
+        Water,
         Special
     }
 }

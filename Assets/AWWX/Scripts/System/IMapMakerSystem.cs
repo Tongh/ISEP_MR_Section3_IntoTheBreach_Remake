@@ -1,8 +1,7 @@
 using FrameworkDesign;
 using UnityEngine;
-using OutOfTheBreach.Model;
 
-namespace OutOfTheBreach.System
+namespace OutOfTheBreach
 {
     public interface IMapMakerSystem : ISystem
     {
@@ -10,53 +9,41 @@ namespace OutOfTheBreach.System
 
     public class MapMakerSystem : AbstractSystem, IMapMakerSystem
     {
-        public int[,] map;
+        private IMapModel mMapModel;
 
         protected override void OnInit()
         {
             Debug.Log("Map Maker System Loaded");
 
-            var mapModel = this.GetModel<IMapModel>();
+            mMapModel = this.GetModel<IMapModel>();
 
-            RandomMap();
+            this.RegisterEvent<GamePrepareEvent>(e =>
+            {
+                RandomMap();
+            });
         }
 
-        public int[,] RandomMap()
+        public void RandomMap()
         {
-            map = new int[8, 8];
+            RandomGroundType();
 
-            RandomMountain();
-
-            int i, j;
-            for (i = 0; i < 8; i++)
-            {
-                for (j = 0; j < 8; j++)
-                {
-                    //Debug.Log("map[{" + i + "},{" + j + "}] = {" + map[i, j] + "}");
-                }
-            }
-
-            return map;
+            //this.SendEvent<>();
         }
 
-        private int[,] RandomMountain()
+        private void RandomGroundType()
         {
-            int[,] mountain = new int[8, 8];
+            int[] prob = new int[] { 80, 5, 5, 5, 5 };
 
-
-            int i, j;
-            for (i = 0; i < 8; i++)
+            for (int i = 0; i < 8; i++)
             {
-                for (j = 0; j < 8; j++)
+                for (int j = 0; j < 8; j++)
                 {
-                    if (map[i, j] == 0)
+                    if (mMapModel.Map[i, j].Value == 0)
                     {
-                        //Random.
+                        mMapModel.Map[i, j].Value = RandomLibrary.randAdd(prob, 100);
                     }
                 }
             }
-
-            return mountain;
         }
     }
 }

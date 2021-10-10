@@ -1,9 +1,8 @@
 using FrameworkDesign;
 using System.Collections.Generic;
 using UnityEngine;
-using OutOfTheBreach.Enum;
 
-namespace OutOfTheBreach.Model
+namespace OutOfTheBreach
 {
     public interface IMapModel : IModel
     {

@@ -1,10 +1,11 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using FrameworkDesign;
 
-namespace OutOfTheBreach.Display
+namespace OutOfTheBreach
 {
-    public class GameStartPanel : MonoBehaviour
+    public class GameStartPanel : MonoBehaviour, IController
     {
         // Start is called before the first frame update
         void Start()
@@ -24,6 +25,11 @@ namespace OutOfTheBreach.Display
                     Application.Quit();
 #endif
                 });
+        }
+
+        public IArchitecture GetArchitecture()
+        {
+            return OutOfTheBreachGame.Interface;
         }
     }
 }

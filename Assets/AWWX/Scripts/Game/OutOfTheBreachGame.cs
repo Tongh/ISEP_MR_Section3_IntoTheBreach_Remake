@@ -1,8 +1,6 @@
 using FrameworkDesign;
-using OutOfTheBreach.System;
-using OutOfTheBreach.Model;
 
-namespace OutOfTheBreach.Game
+namespace OutOfTheBreach
 {
     public class OutOfTheBreachGame : Architecture<OutOfTheBreachGame>
     {

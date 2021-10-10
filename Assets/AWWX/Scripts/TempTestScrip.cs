@@ -1,7 +1,5 @@
 using UnityEngine;
 using FrameworkDesign;
-using OutOfTheBreach.Game;
-using OutOfTheBreach.System;
 
 namespace OutOfTheBreach.Test
 {

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace OutOfTheBreach.Library
+namespace OutOfTheBreach
 {
     public static class RandomLibrary
     {
