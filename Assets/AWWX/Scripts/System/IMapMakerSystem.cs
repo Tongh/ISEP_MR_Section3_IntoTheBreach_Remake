@@ -1,5 +1,6 @@
 using FrameworkDesign;
 using UnityEngine;
+using OutOfTheBreach.Model;
 
 namespace OutOfTheBreach.System
 {
@@ -14,12 +15,17 @@ namespace OutOfTheBreach.System
         protected override void OnInit()
         {
             Debug.Log("Map Maker System Loaded");
+
+            var mapModel = this.GetModel<IMapModel>();
+
             RandomMap();
         }
 
         public int[,] RandomMap()
         {
             map = new int[8, 8];
+
+            RandomMountain();
 
             int i, j;
             for (i = 0; i < 8; i++)
