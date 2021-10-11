@@ -36,6 +36,10 @@ namespace OutOfTheBreach
             {
                 this.SendEvent<InitMechaEvent>();
             });
+
+            this.RegisterEvent<MechaInPlacingEvent>(e =>
+            {
+            });
         }
 
         public string GetMechaIdByInt(int index)

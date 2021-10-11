@@ -20,7 +20,7 @@ namespace OutOfTheBreach
         {
             for (int i = 0; i < 10; i++)
             {
-                Monsters[i] = new BindableMonsterData((i+3).ToString());
+                Monsters[i] = new BindableMonsterData(i + 3);
             }
         }
     }

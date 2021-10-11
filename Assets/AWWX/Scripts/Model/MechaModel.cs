@@ -20,7 +20,7 @@ namespace OutOfTheBreach
         {
             for (int i = 0; i < 3; i++)
             {
-                Mechas[i] = new BindableMechaData(i.ToString());
+                Mechas[i] = new BindableMechaData(i);
             }
         }
     }

@@ -5,7 +5,7 @@ namespace OutOfTheBreach
 {
     public class BindableMechaData
     {
-        public BindableProperty<string> ID;
+        public BindableProperty<int> ID;
         public BindableProperty<string> NickName;
         public BindableProperty<string> MechaModel;
         public BindableProperty<int> Life;
@@ -16,10 +16,10 @@ namespace OutOfTheBreach
         public BindableProperty<Vector2Int> Position;
         public BindableProperty<Vector2Int> Direction;
 
-        public BindableMechaData(string id)
+        public BindableMechaData(int id)
         {
-            ID = new BindableProperty<string>() { Value = id };
-            NickName = new BindableProperty<string>() { Value = id };
+            ID = new BindableProperty<int>() { Value = id };
+            NickName = new BindableProperty<string>() { Value = "" };
             MechaModel = new BindableProperty<string>() { Value = "" };
             Life = new BindableProperty<int>() { Value = 0 };
             Speed = new BindableProperty<int>() { Value = 0 };

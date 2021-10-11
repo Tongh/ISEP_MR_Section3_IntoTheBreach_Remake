@@ -7,7 +7,6 @@ namespace OutOfTheBreach
     {
         private void Start()
         {
-            this.SendCommand<PrepareGameCommand>();
         }
 
         public IArchitecture GetArchitecture()

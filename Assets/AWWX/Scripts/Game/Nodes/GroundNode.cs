@@ -37,7 +37,7 @@ namespace OutOfTheBreach
                 }
             }
 
-            this.SendCommand<MonsterComeCommand>();
+            this.SendCommand<PrepareMonsterCommand>();
         }
 
         public IArchitecture GetArchitecture()

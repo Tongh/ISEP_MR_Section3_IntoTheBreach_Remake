@@ -5,23 +5,24 @@ namespace OutOfTheBreach
 {
     public class GroundCube : MonoBehaviour, IController
     {
-        private IMapMakerSystem mapMakerSystem;
+        private IMapModel mMapModel;
+        private IMapMakerSystem mMapMakerSystem;
 
         public void Init(int X, int Y)
         {
+            mMapModel = this.GetModel<IMapModel>();
+            mMapMakerSystem = this.GetSystem<IMapMakerSystem>();
+
             transform.position = new Vector3(X, 0, Y);
 
-            var mapModel = this.GetModel<IMapModel>();
-            mapMakerSystem = this.GetSystem<IMapMakerSystem>();
+            mMapModel.GroundTypeMap[X, Y].RegisterOnValueChanged(OnGroundChanged);
 
-            mapModel.GroundTypeMap[X, Y].RegisterOnValueChanged(OnGroundChanged);
-
-            OnGroundChanged(mapModel.GroundTypeMap[X, Y].Value);
+            OnGroundChanged(mMapModel.GroundTypeMap[X, Y].Value);
         }
 
         private void OnGroundChanged(int GroundType)
         {
-            GetComponent<MeshRenderer>().material =  mapMakerSystem.GetMateirialByGround(GroundType);
+            GetComponent<MeshRenderer>().material =  mMapMakerSystem.GetMateirialByGround(GroundType);
         }
 
         IArchitecture IBelongToArchitecture.GetArchitecture()

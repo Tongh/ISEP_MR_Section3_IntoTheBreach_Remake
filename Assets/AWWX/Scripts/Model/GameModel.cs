@@ -9,7 +9,7 @@ namespace OutOfTheBreach
         BindableProperty<int> Energy { get; }
         BindableProperty<int> TurnLeft { get; }
         BindableProperty<string> [] MechaModels { get; }
-        BindableProperty<string> SelectedMechaId { get; }
+        BindableProperty<int> SelectingUnitId { get; }
     }
 
     public class GameModel : AbstractModel, IGameModel
@@ -41,9 +41,9 @@ namespace OutOfTheBreach
 
         public BindableProperty<string> [] MechaModels { get; } = new BindableProperty<string>[3];
 
-        public BindableProperty<string> SelectedMechaId { get; } = new BindableProperty<string>()
+        public BindableProperty<int> SelectingUnitId { get; } = new BindableProperty<int>()
         {
-            Value = ""
+            Value = -1
         };
 
         private void ResetArray()

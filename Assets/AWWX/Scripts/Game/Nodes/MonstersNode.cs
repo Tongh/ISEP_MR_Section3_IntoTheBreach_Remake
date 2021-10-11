@@ -32,7 +32,7 @@ namespace OutOfTheBreach
             {
                 GameObject monster = Instantiate(MonsterPrefab);
                 monster.transform.parent = transform;
-                MonsterPrefab.GetComponent<Monster>().Init(i + 3);
+                monster.GetComponent<Monster>().Init(i + 3);
             }
         }
 

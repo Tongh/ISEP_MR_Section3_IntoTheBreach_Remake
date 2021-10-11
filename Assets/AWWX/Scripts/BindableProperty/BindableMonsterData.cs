@@ -5,7 +5,9 @@ namespace OutOfTheBreach
 {
     public class BindableMonsterData
     {
-        public BindableProperty<string> ID;
+        public MonsterData monsterData;
+
+        public BindableProperty<int> ID;
         public BindableProperty<string> MonsterModel;
         public BindableProperty<int> Life;
         public BindableProperty<int> Speed;
@@ -15,9 +17,9 @@ namespace OutOfTheBreach
         public BindableProperty<Vector2Int> Position;
         public BindableProperty<Vector2Int> Direction;
 
-        public BindableMonsterData(string id)
+        public BindableMonsterData(int id)
         {
-            ID = new BindableProperty<string>() { Value = id };
+            ID = new BindableProperty<int>() { Value = id };
             MonsterModel = new BindableProperty<string>() { Value = "" };
             Life = new BindableProperty<int>() { Value = 0 };
             Speed = new BindableProperty<int>() { Value = 0 };

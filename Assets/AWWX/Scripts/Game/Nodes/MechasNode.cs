@@ -33,6 +33,8 @@ namespace OutOfTheBreach
                 mecha.transform.parent = transform;
                 MechaPrefab.GetComponent<Mecha>().Init(i);
             }
+
+            this.SendCommand<WaitMechaInPlaceCommand>();
         }
 
         public IArchitecture GetArchitecture()

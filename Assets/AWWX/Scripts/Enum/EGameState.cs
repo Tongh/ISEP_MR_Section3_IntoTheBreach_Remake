@@ -4,6 +4,7 @@ namespace OutOfTheBreach
     {
         GameSetting = -1, // Select Mecha
         GamePreparing = 0, // Map
+        MonsterPreparing,
         MonsterComing,
         MechaInPlacing,
         MonsterMovePhase,

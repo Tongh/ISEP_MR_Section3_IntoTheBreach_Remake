@@ -13,6 +13,8 @@ namespace OutOfTheBreach
         public void Init(int id)
         {
             transform.localPosition = new Vector3(0, -1, 0);
+
+
         }
 
         IArchitecture IBelongToArchitecture.GetArchitecture()
