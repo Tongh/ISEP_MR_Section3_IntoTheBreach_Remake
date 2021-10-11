@@ -1,33 +1,28 @@
 {
     "Styles": [
       {
-        "StyleId": "desert",
+        "StyleId": "Sand",
         "StyleName": "Desert style battle field",
         "Grounds": [
           {
             "GroundType": 0,
-            "GroundName": "Desert",
-            "GroundMaterial": "Materials/M_Ground_Sand"
+            "GroundName": "Desert"
           },
           {
             "GroundType": 1,
-            "GroundName": "Mountain",
-            "GroundMaterial": "Materials/M_Mountain_Sand"
+            "GroundName": "Mountain"
           },
           {
             "GroundType": 2,
-            "GroundName": "Building",
-            "GroundMaterial": "Materials/M_Building_Sand"
+            "GroundName": "Building"
           },
           {
             "GroundType": 3,
-            "GroundName": "Water",
-            "GroundMaterial": "Materials/M_Water_Sand"
+            "GroundName": "Water"
           },
           {
             "GroundType": 4,
-            "GroundName": "Dune",
-            "GroundMaterial": "Materials/M_Special_Sand"
+            "GroundName": "Dune"
           }
         ]
       }

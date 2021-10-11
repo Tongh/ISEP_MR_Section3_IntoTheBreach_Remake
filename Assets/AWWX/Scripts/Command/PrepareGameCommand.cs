@@ -6,6 +6,9 @@ namespace OutOfTheBreach
     {
         protected override void OnExecute()
         {
+            var gameModel = this.GetModel<IGameModel>();
+
+            gameModel.GameState.Value = (int)EGameState.GamePreparing;
 
             this.SendEvent<GamePrepareEvent>();
         }

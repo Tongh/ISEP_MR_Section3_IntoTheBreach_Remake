@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: ae8664caffe09ec4c898afbb57658e08
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - GroundCubePrefab: {fileID: 1945285061457723311, guid: 3cae86a32395b85448f270f07e94a396, type: 3}
+  - MechaPrefab: {fileID: 7587928199767361825, guid: a8da9459a7ecdca40a03a3bd351e58d5, type: 3}
+  - MonsterPrefab: {fileID: 8538379352735478167, guid: 38002360a8d8b374db3ada018b107abe, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: eb5bb51b57cd8d04aa52675d732c4b84
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - MechaPrefab: {fileID: 7587928199767361825, guid: a8da9459a7ecdca40a03a3bd351e58d5, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

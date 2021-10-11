@@ -1,6 +1,6 @@
 namespace OutOfTheBreach
 {
-    public struct GameStartEvent
+    public struct MonsterComeEvent
     {
     }
 }

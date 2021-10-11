@@ -1,0 +1,32 @@
+{
+    "MonstersData": [
+      {
+        "MonsterId": "Gojira",
+        "Description": "Charge forward with a strong body.",
+        "Speed": 3,
+        "Life": 3,
+        "bIsFlying": 0
+      },
+      {
+        "MonsterId": "GigaSlime",
+        "Description": "Bound the opponent in front of him and unable to move.",
+        "Speed": 5,
+        "Life": 2,
+        "bIsFlying": 0
+      },
+      {
+        "MonsterId": "DonkeyKong",
+        "Description": "Throw a huge banana peel in the distance.",
+        "Speed": 5,
+        "Life": 2,
+        "bIsFlying": 0
+      },
+      {
+        "MonsterId": "Balloon",
+        "Description": "The mascot that can increase the maximum life of all monsters.",
+        "Speed": 6,
+        "Life": 2,
+        "bIsFlying": 1
+      }
+    ]
+}

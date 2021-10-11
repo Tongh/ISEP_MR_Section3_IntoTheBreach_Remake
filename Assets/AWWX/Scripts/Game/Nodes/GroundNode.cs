@@ -1,49 +1,41 @@
 using UnityEngine;
 using FrameworkDesign;
+using UnityEngine.Assertions;
 
 namespace OutOfTheBreach
 {
-    public class GameController : MonoBehaviour, IController
+    public class GroundNode : MonoBehaviour, IController
     {
         public GameObject GroundCubePrefab;
 
-        // Start is called before the first frame update
         private void Start()
         {
-            this.RegisterEvent<GamePrepareEvent>(OnGameEnter);
-            this.RegisterEvent<GameStartEvent>(OnGameStart);
-
-            this.SendCommand<PrepareGameCommand>();
+            this.RegisterEvent<InitGroundEvent>(InitGround);
         }
 
         private void OnDestroy()
         {
-            this.UnRegisterEvent<GamePrepareEvent>(OnGameEnter);
-            this.UnRegisterEvent<GameStartEvent>(OnGameStart);
+            this.UnRegisterEvent<InitGroundEvent>(InitGround);
         }
 
-        private void OnGameEnter(GamePrepareEvent e)
+        private void InitGround(InitGroundEvent e)
         {
-            var GroundRoot = transform.Find("Ground");
-
-            foreach (Transform childTrans in GroundRoot)
+            foreach (Transform childTrans in transform)
             {
                 Destroy(childTrans.gameObject);
             }
+
+            Assert.IsNotNull(GroundCubePrefab, nameof(GroundCubePrefab) + " Not set!");
 
             for (int i = 0; i < 8; i++)
             {
                 for (int j = 0; j < 8; j++)
                 {
                     GameObject GroundCube = Instantiate(GroundCubePrefab);
-                    GroundCube.transform.parent = GroundRoot;
+                    GroundCube.transform.parent = transform;
                     GroundCubePrefab.GetComponent<GroundCube>().Init(i, j);
                 }
             }
-        }
-
-        private void OnGameStart(GameStartEvent e)
-        {
         }
 
         public IArchitecture GetArchitecture()

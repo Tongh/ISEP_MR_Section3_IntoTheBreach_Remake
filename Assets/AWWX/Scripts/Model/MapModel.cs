@@ -13,8 +13,6 @@ namespace OutOfTheBreach
     {
         protected override void OnInit()
         {
-            Debug.Log("Map Model Loaded");
-
             ResetMap();
         }
 

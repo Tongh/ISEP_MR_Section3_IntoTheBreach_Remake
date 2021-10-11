@@ -4,7 +4,11 @@ namespace OutOfTheBreach
 {
     public interface IGameModel : IModel
     {
-        BindableProperty<int> SelectedMechaId { get; }
+        BindableProperty<int> GameState { get; }
+        BindableProperty<int> Difficulty { get; }
+        BindableProperty<int> Energy { get; }
+        BindableProperty<int> TurnLeft { get; }
+        BindableProperty<string> SelectedMechaId { get; }
     }
 
     public class GameModel : AbstractModel, IGameModel
@@ -14,9 +18,29 @@ namespace OutOfTheBreach
 
         }
 
-        public BindableProperty<int> SelectedMechaId { get; } = new BindableProperty<int>()
+        public BindableProperty<int> GameState { get; } = new BindableProperty<int>()
+        {
+            Value = (int)EGameState.GameSetting
+        };
+
+        public BindableProperty<int> Difficulty { get; } = new BindableProperty<int>()
+        {
+            Value = (int)EGameDifficulty.NORMAL
+        };
+
+        public BindableProperty<int> Energy { get; } = new BindableProperty<int>()
         {
             Value = 0
+        };
+
+        public BindableProperty<int> TurnLeft { get; } = new BindableProperty<int>()
+        {
+            Value = 0
+        };
+
+        public BindableProperty<string> SelectedMechaId { get; } = new BindableProperty<string>()
+        {
+            Value = ""
         };
     }
 }

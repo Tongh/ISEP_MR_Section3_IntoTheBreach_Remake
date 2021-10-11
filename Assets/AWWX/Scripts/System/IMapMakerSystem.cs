@@ -12,43 +12,51 @@ namespace OutOfTheBreach
     public class MapMakerSystem : AbstractSystem, IMapMakerSystem
     {
         private IMapModel mMapModel;
-        public MapMakerConfigData mapMakerConfigData;
-        public StyleMapConfigData styleMapConfigData;
+        private MapMakerConfigData mMapMakerConfigData;
+        private StyleMapConfigData mStyleMapConfigData;
 
         protected override void OnInit()
         {
-            Debug.Log("Map Maker System Loaded");
-
             mMapModel = this.GetModel<IMapModel>();
             var storage = this.GetUtility<IStorage>();
 
-            mapMakerConfigData = storage.LoadMapMakerConfigData();
-            styleMapConfigData = mapMakerConfigData.Styles[Random.Range(0, mapMakerConfigData.Styles.Length)];
+            mMapMakerConfigData = storage.LoadMapMakerConfigData();
+            mStyleMapConfigData = mMapMakerConfigData.Styles[Random.Range(0, mMapMakerConfigData.Styles.Length)];
 
             this.RegisterEvent<GamePrepareEvent>(e =>
             {
                 RandomMap();
+
+                this.SendEvent<InitGroundEvent>();
             });
         }
 
         public Material GetMateirialByGround(int GroundTypeInt)
         {
-            foreach (MapGroundConfigData eachGround in styleMapConfigData.Grounds)
+            foreach (MapGroundConfigData eachGround in mStyleMapConfigData.Grounds)
             {
                 if (GroundTypeInt == ((int)eachGround.GroundType))
                 {
-                    Material mat = Resources.Load(eachGround.GroundMaterial, typeof(Material)) as Material;
+                    string MatRes = GetGroundMaterialRessourceString(eachGround.GroundType); 
+                    Material mat = Resources.Load(MatRes, typeof(Material)) as Material;
                     Assert.IsNotNull(mat, "Material is null!");
                     return mat;
                 }
             }
-            Debug.LogError("Material is null! ");
+            Assert.IsTrue(false, "Material is null!");
             return null;
+        }
+
+        private string GetGroundMaterialRessourceString(EMapGroundType GroundType)
+        {
+            return "Materials/Ground/M_" + GroundType.ToString() + "_" + mStyleMapConfigData.StyleId;
         }
 
         public void RandomMap()
         {
             RandomGroundType();
+
+            //TODO Enhance continuity of the same type
         }
 
         private void RandomGroundType()

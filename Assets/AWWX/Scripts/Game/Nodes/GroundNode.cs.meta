@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: 1e967dd741f813443a8dc4d25035c71f
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - GroundCubePrefab: {fileID: 1945285061457723311, guid: 3cae86a32395b85448f270f07e94a396, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

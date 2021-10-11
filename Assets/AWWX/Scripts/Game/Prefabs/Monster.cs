@@ -3,11 +3,11 @@ using FrameworkDesign;
 
 namespace OutOfTheBreach
 {
-    public class MechaController : MonoBehaviour, IController
+    public class Monster : MonoBehaviour, IController
     {
         private void OnMouseDown()
         {
-            
+
         }
 
         IArchitecture IBelongToArchitecture.GetArchitecture()

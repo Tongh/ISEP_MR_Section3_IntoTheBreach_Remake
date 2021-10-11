@@ -12,6 +12,18 @@ namespace OutOfTheBreach
             const string FileName = "MapMakerConfigData.json";
             return ReadJsonStructFromFile<MapMakerConfigData>(FileName);
         }
+
+        public override MechaConfigData LoadMechaConfigData()
+        {
+            const string FileName = "MechasConfigData.json";
+            return ReadJsonStructFromFile<MechaConfigData>(FileName);
+        }
+
+        public override MonsterConfigData LoadMonsterConfigData()
+        {
+            const string FileName = "MonstersConfigData.json";
+            return ReadJsonStructFromFile<MonsterConfigData>(FileName);
+        }
     }
 
     public abstract class MyJsonUtility : IStorage
@@ -53,5 +65,7 @@ namespace OutOfTheBreach
         }
 
         public abstract MapMakerConfigData LoadMapMakerConfigData();
+        public abstract MechaConfigData LoadMechaConfigData();
+        public abstract MonsterConfigData LoadMonsterConfigData();
     }
 }

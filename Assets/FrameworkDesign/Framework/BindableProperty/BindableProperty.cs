@@ -13,7 +13,7 @@ namespace FrameworkDesign
             get => mValue;
             set
             {
-                if (!mValue.Equals(value))
+                if (!value.Equals(mValue))
                 {
                     mValue = value;
                     mOnValueChanged?.Invoke(value);
