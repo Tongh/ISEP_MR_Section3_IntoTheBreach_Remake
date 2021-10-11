@@ -3,28 +3,28 @@
       {
         "MechaId": "F91",
         "Description": "Mecha that is good at close hand-to-hand combat.",
-        "Speed": 6,
+        "Speed": 4,
         "Life": 3,
         "bIsFlying": 0
       },
       {
         "MechaId": "Siren",
         "Description": "Mecha flying in the air for remote assistance.",
-        "Speed": 7,
+        "Speed": 5,
         "Life": 2,
         "bIsFlying": 1
       },
       {
         "MechaId": "EVA-01",
         "Description": "Mecha for long-range fire support.",
-        "Speed": 6,
+        "Speed": 4,
         "Life": 3,
         "bIsFlying": 0
       },
       {
         "MechaId": "NameWhat",
         "Description": "Mysterious mecha, very good at dividing the battlefield.",
-        "Speed": 7,
+        "Speed": 3,
         "Life": 2,
         "bIsFlying": 0
       }

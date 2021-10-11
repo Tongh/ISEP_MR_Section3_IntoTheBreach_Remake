@@ -7,6 +7,7 @@ namespace OutOfTheBreach
     public interface IMapMakerSystem : ISystem
     {
         Material GetMateirialByGround(int GroundTypeInt);
+        Vector2Int RandomBirthGround();
     }
 
     public class MapMakerSystem : AbstractSystem, IMapMakerSystem
@@ -67,12 +68,43 @@ namespace OutOfTheBreach
             {
                 for (int j = 0; j < 8; j++)
                 {
-                    if (mMapModel.Map[i, j].Value == 0)
+                    if (mMapModel.GroundTypeMap[i, j].Value == (int)EMapGroundType.Ground)
                     {
-                        mMapModel.Map[i, j].Value = RandomLibrary.randAdd(prob, 100);
+                        mMapModel.GroundTypeMap[i, j].Value = RandomLibrary.randAdd(prob, 100);
                     }
                 }
             }
+        }
+
+        public Vector2Int RandomBirthGround()
+        {
+            Vector2Int ret = new Vector2Int();
+            bool finded = false;
+            do
+            {
+                int i = Random.Range(0, 8);
+                int j = Random.Range(0, 8);
+
+                int groundtype = mMapModel.GroundTypeMap[i, j].Value;
+                bool GroundCanStand =
+                    groundtype == (int)EMapGroundType.Ground ||
+                    groundtype == (int)EMapGroundType.Special;
+
+                bool someonehere = mMapModel.bIsSomeoneHereMap[i, j].Value;
+
+                if (GroundCanStand && !someonehere)
+                {
+                    ret.x = i;
+                    ret.y = j;
+
+                    mMapModel.bIsSomeoneHereMap[i, j].Value = true;
+
+                    finded = true;
+                }
+
+            } while (!finded);
+
+            return ret;
         }
     }
 }

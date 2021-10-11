@@ -14,9 +14,9 @@ namespace OutOfTheBreach
             var mapModel = this.GetModel<IMapModel>();
             mapMakerSystem = this.GetSystem<IMapMakerSystem>();
 
-            mapModel.Map[X, Y].RegisterOnValueChanged(OnGroundChanged);
+            mapModel.GroundTypeMap[X, Y].RegisterOnValueChanged(OnGroundChanged);
 
-            OnGroundChanged(mapModel.Map[X, Y].Value);
+            OnGroundChanged(mapModel.GroundTypeMap[X, Y].Value);
         }
 
         private void OnGroundChanged(int GroundType)

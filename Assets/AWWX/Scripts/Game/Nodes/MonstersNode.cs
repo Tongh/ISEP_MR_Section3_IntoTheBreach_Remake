@@ -28,6 +28,12 @@ namespace OutOfTheBreach
 
             Assert.IsNotNull(MonsterPrefab, nameof(MonsterPrefab) + " Not set!");
 
+            for (int i = 0; i < 10; i++)
+            {
+                GameObject monster = Instantiate(MonsterPrefab);
+                monster.transform.parent = transform;
+                MonsterPrefab.GetComponent<Monster>().Init(i + 3);
+            }
         }
 
         public IArchitecture GetArchitecture()

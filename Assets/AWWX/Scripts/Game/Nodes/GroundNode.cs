@@ -36,6 +36,8 @@ namespace OutOfTheBreach
                     GroundCubePrefab.GetComponent<GroundCube>().Init(i, j);
                 }
             }
+
+            this.SendCommand<MonsterComeCommand>();
         }
 
         public IArchitecture GetArchitecture()

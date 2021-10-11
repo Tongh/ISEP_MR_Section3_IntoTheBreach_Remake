@@ -27,6 +27,12 @@ namespace OutOfTheBreach
 
             Assert.IsNotNull(MechaPrefab, nameof(MechaPrefab) + " Not set!");
 
+            for (int i = 0; i < 3; i++)
+            {
+                GameObject mecha = Instantiate(MechaPrefab);
+                mecha.transform.parent = transform;
+                MechaPrefab.GetComponent<Mecha>().Init(i);
+            }
         }
 
         public IArchitecture GetArchitecture()

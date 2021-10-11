@@ -32,7 +32,7 @@ namespace FrameworkDesign
             };
         }
 
-        public void UnReigsterOnValueChanged(Action<T> onValueChanged)
+        public void UnRegisterOnValueChanged(Action<T> onValueChanged)
         {
             mOnValueChanged -= onValueChanged;
         }
@@ -46,7 +46,7 @@ namespace FrameworkDesign
 
         public void UnRegister()
         {
-            BindableProperty.UnReigsterOnValueChanged(OnValueChanged);
+            BindableProperty.UnRegisterOnValueChanged(OnValueChanged);
         }
     }
 }

@@ -9,8 +9,7 @@ namespace OutOfTheBreach
     {
         private IGameModel mGameModel;
 
-        // Start is called before the first frame update
-        void Start()
+        private void Start()
         {
             mGameModel = this.GetModel<IGameModel>();
             mGameModel.Difficulty.RegisterOnValueChanged(OnDifficultyChanged);
@@ -38,16 +37,16 @@ namespace OutOfTheBreach
             OnDifficultyChanged(mGameModel.Difficulty.Value);
         }
 
+        private void OnDestroy()
+        {
+            mGameModel.Difficulty.UnRegisterOnValueChanged(OnDifficultyChanged);
+            mGameModel = null;
+        }
+
         private void OnDifficultyChanged(int newValue)
         {
             transform.Find("TopBarPanel/BtnDifficulty/Text").GetComponent<Text>()
                 .text = ((EGameDifficulty)newValue).ToString();
-        }
-
-        private void OnDestroy()
-        {
-            mGameModel.Difficulty.UnReigsterOnValueChanged(OnDifficultyChanged);
-            mGameModel = null;
         }
 
         public IArchitecture GetArchitecture()

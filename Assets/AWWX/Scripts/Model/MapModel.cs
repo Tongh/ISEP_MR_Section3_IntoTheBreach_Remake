@@ -6,7 +6,8 @@ namespace OutOfTheBreach
 {
     public interface IMapModel : IModel
     {
-        BindableProperty<int>[,] Map { get; }
+        BindableProperty<int>[,] GroundTypeMap { get; }
+        BindableProperty<bool>[,] bIsSomeoneHereMap { get; }
     }
 
     public class MapModel : AbstractModel, IMapModel
@@ -16,7 +17,8 @@ namespace OutOfTheBreach
             ResetMap();
         }
 
-        public BindableProperty<int>[,] Map { get; } = new BindableProperty<int>[8, 8];
+        public BindableProperty<int>[,] GroundTypeMap { get; } = new BindableProperty<int>[8, 8];
+        public BindableProperty<bool>[,] bIsSomeoneHereMap { get; } = new BindableProperty<bool>[8, 8];
 
         private void ResetMap()
         {
@@ -24,7 +26,8 @@ namespace OutOfTheBreach
             {
                 for (int j = 0; j < 8; j++)
                 {
-                    Map[i, j] = new BindableProperty<int>() { Value = 0 };
+                    GroundTypeMap[i, j] = new BindableProperty<int>() { Value = 0 };
+                    bIsSomeoneHereMap[i, j] = new BindableProperty<bool>() { Value = false };
                 }
             }
         }

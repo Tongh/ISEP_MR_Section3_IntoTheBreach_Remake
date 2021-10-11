@@ -8,6 +8,7 @@ namespace OutOfTheBreach
         BindableProperty<int> Difficulty { get; }
         BindableProperty<int> Energy { get; }
         BindableProperty<int> TurnLeft { get; }
+        BindableProperty<string> [] MechaModels { get; }
         BindableProperty<string> SelectedMechaId { get; }
     }
 
@@ -15,7 +16,7 @@ namespace OutOfTheBreach
     {
         protected override void OnInit()
         {
-
+            ResetArray();
         }
 
         public BindableProperty<int> GameState { get; } = new BindableProperty<int>()
@@ -30,17 +31,27 @@ namespace OutOfTheBreach
 
         public BindableProperty<int> Energy { get; } = new BindableProperty<int>()
         {
-            Value = 0
+            Value = 3
         };
 
         public BindableProperty<int> TurnLeft { get; } = new BindableProperty<int>()
         {
-            Value = 0
+            Value = 5
         };
+
+        public BindableProperty<string> [] MechaModels { get; } = new BindableProperty<string>[3];
 
         public BindableProperty<string> SelectedMechaId { get; } = new BindableProperty<string>()
         {
             Value = ""
         };
+
+        private void ResetArray()
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                MechaModels[i] = new BindableProperty<string>() { Value = i.ToString() };
+            }
+        }
     }
 }
