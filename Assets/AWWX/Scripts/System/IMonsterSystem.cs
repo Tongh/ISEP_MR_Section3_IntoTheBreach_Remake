@@ -32,6 +32,9 @@ namespace OutOfTheBreach
             {
                 MakeMonstersData();
 
+                Assert.IsTrue(mGameModel.GameState.Value == (int)EGameState.MonsterPreparing, nameof(EGameState.MonsterComing) + " must after " + nameof(EGameState.MonsterPreparing));
+                mGameModel.GameState.Value = (int)EGameState.MonsterComing;
+
                 this.SendEvent<MonsterComeEvent>();
             });
         }

@@ -9,7 +9,7 @@ namespace OutOfTheBreach
         {
             var gameModel = this.GetModel<IGameModel>();
 
-            Assert.IsTrue(gameModel.GameState.Value == (int)EGameState.MonsterComing, nameof(EGameState.MonsterComing) + " must after " + nameof(EGameState.MechaInPlacing));
+            Assert.IsTrue(gameModel.GameState.Value == (int)EGameState.MonsterComing, nameof(EGameState.MechaInPlacing) + " must after " + nameof(EGameState.MonsterComing));
             gameModel.GameState.Value = (int)EGameState.MechaInPlacing;
 
             this.SendEvent<MechaInPlacingEvent>();

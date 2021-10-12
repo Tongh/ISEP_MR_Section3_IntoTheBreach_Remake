@@ -18,7 +18,6 @@ namespace OutOfTheBreach
             this.UnRegisterEvent<MonsterComeEvent>(InitMonster);
         }
 
-
         private void InitMonster(MonsterComeEvent e)
         {
             foreach (Transform childTrans in transform)

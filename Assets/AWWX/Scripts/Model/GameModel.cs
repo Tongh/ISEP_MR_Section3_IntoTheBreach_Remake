@@ -10,6 +10,7 @@ namespace OutOfTheBreach
         BindableProperty<int> TurnLeft { get; }
         BindableProperty<string> [] MechaModels { get; }
         BindableProperty<int> SelectingUnitId { get; }
+        BindableProperty<int> SelectingGroundType { get; }
     }
 
     public class GameModel : AbstractModel, IGameModel
@@ -44,6 +45,11 @@ namespace OutOfTheBreach
         public BindableProperty<int> SelectingUnitId { get; } = new BindableProperty<int>()
         {
             Value = -1
+        };
+
+        public BindableProperty<int> SelectingGroundType { get; } = new BindableProperty<int>()
+        {
+            Value = 0
         };
 
         private void ResetArray()

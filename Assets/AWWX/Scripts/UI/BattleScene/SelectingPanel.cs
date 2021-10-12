@@ -11,11 +11,16 @@ namespace OutOfTheBreach
         private IMechaModel mMechaModel;
         private IMonsterModel mMonsterModel;
 
+        private IMapMakerSystem mMapMakerSystem;
+
         private void Start()
         {
             mGameModel = this.GetModel<IGameModel>();
             mMechaModel = this.GetModel<IMechaModel>();
             mMonsterModel = this.GetModel<IMonsterModel>();
+
+
+            mMapMakerSystem = this.GetSystem<IMapMakerSystem>();
 
             mGameModel.SelectingUnitId.RegisterOnValueChanged(OnSelectingUnitIdChanged);
 
@@ -34,12 +39,31 @@ namespace OutOfTheBreach
             if (newValue == -1)
             {
             }
-            if (newValue < 3)
+            else if (newValue == -2) // Ground
+            {
+                int groundtype = mGameModel.SelectingGroundType.Value;
+                MapGroundConfigData data = mMapMakerSystem.GetMapGroundConfigDataByGroundTypeInt(groundtype);
+
+                transform.Find("Name").GetComponent<Text>()
+                    .text = data.GroundName;
+                transform.Find("Description").GetComponent<Text>()
+                    .text = data.Description;
+                transform.Find("Speed").GetComponent<Text>()
+                    .text = "";
+                transform.Find("Flying").GetComponent<Text>()
+                    .text = "";
+
+                //string str = data.GroundType == EMapGroundType.Mountain ? "Life: " + mMapMakerSystem. + " / 2";
+                transform.Find("Life").GetComponent<Text>()
+                    .text = "";
+
+            }
+            else if (newValue < 3) // Mecha
             {
                 //transform.Find("Name").GetComponent<Text>()
                 //    .text = mMechaModel.Mechas[newValue].NickName.Value;
             }
-            else
+            else if (newValue < 13) // Monster
             {
                 newValue -= 3;
                 MonsterData data = mMonsterModel.Monsters[newValue].monsterData;

@@ -6,23 +6,28 @@
         "Grounds": [
           {
             "GroundType": 0,
-            "GroundName": "Desert"
+            "GroundName": "Desert",
+            "Description": "Ordinary sand in the desert"
           },
           {
             "GroundType": 1,
-            "GroundName": "Mountain"
+            "GroundName": "Mountain",
+            "Description": "Mechas and monsters crash into the mountains, and the mountains and themselves will be damaged."
           },
           {
             "GroundType": 2,
-            "GroundName": "Building"
+            "GroundName": "Building",
+            "Description": "Damage to buildings will result in energy loss. When the energy is too low, the mecha will be unable to move."
           },
           {
             "GroundType": 3,
-            "GroundName": "Water"
+            "GroundName": "Water",
+            "Description": "Units that cannot fly fall into the water and cannot attack."
           },
           {
             "GroundType": 4,
-            "GroundName": "Dune"
+            "GroundName": "Dune",
+            "Description": "After the sand dunes are attacked, the sand will be raised, and the attack in the sand will be cancelled."
           }
         ]
       }

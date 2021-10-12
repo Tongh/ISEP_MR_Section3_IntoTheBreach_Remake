@@ -8,6 +8,7 @@ namespace OutOfTheBreach
     {
         Material GetMateirialByGround(int GroundTypeInt);
         Vector2Int RandomBirthGround();
+        MapGroundConfigData GetMapGroundConfigDataByGroundTypeInt(int GroundTypeInt);
     }
 
     public class MapMakerSystem : AbstractSystem, IMapMakerSystem
@@ -105,6 +106,11 @@ namespace OutOfTheBreach
             } while (!finded);
 
             return ret;
+        }
+
+        public MapGroundConfigData GetMapGroundConfigDataByGroundTypeInt(int GroundTypeInt)
+        {
+            return mStyleMapConfigData.Grounds[GroundTypeInt];
         }
     }
 }
