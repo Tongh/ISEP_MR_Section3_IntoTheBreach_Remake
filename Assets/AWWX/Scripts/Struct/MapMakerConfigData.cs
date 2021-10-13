@@ -20,7 +20,7 @@ namespace OutOfTheBreach
     [Serializable]
     public struct MapGroundConfigData
     {
-        public EMapGroundType GroundType;
+        public ETypeGround GroundType;
         public string GroundName;
         public string Description;
     } 

@@ -3,7 +3,7 @@ using UnityEngine.Assertions;
 
 namespace OutOfTheBreach
 {
-    public interface IMechaSystem : ISystem
+    public interface ISystemMecha : ISystem
     {
         string GetMechaIdByInt(int index);
         int GetMechaindexById(string id);
@@ -12,16 +12,16 @@ namespace OutOfTheBreach
         MechaData GetMechaDataByInt(int index);
     }
 
-    public class MechaSystem : AbstractSystem, IMechaSystem
+    public class SystemMecha : AbstractSystem, ISystemMecha
     {
         private IGameModel mGameModel;
-        private IMechaModel mMechaModel;
+        private IModelMecha mMechaModel;
         private MechaConfigData mMechaConfigData;
 
         protected override void OnInit()
         {
             mGameModel = this.GetModel<IGameModel>();
-            mMechaModel = this.GetModel<IMechaModel>();
+            mMechaModel = this.GetModel<IModelMecha>();
             var storage = this.GetUtility<IStorage>();
 
             mMechaConfigData = storage.LoadMechaConfigData();

@@ -4,13 +4,13 @@ using UnityEngine;
 
 namespace OutOfTheBreach
 {
-    public interface IMapModel : IModel
+    public interface IModelGround : IModel
     {
         BindableProperty<int>[,] GroundTypeMap { get; }
         BindableProperty<bool>[,] bIsSomeoneHereMap { get; }
     }
 
-    public class MapModel : AbstractModel, IMapModel
+    public class ModelGround : AbstractModel, IModelGround
     {
         protected override void OnInit()
         {

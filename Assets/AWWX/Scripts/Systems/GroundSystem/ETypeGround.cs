@@ -1,6 +1,6 @@
 namespace OutOfTheBreach
 {
-    public enum EMapGroundType
+    public enum ETypeGround
     {
         Ground,
         Mountain,

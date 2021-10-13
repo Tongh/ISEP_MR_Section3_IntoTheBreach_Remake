@@ -4,7 +4,7 @@ using UnityEngine.Assertions;
 
 namespace OutOfTheBreach
 {
-    public class GroundNode : MonoBehaviour, IController
+    public class NodeGround : MonoBehaviour, IController
     {
         public GameObject GroundCubePrefab;
 
@@ -31,9 +31,9 @@ namespace OutOfTheBreach
             {
                 for (int j = 0; j < 8; j++)
                 {
-                    GameObject GroundCube = Instantiate(GroundCubePrefab);
-                    GroundCube.transform.parent = transform;
-                    GroundCubePrefab.GetComponent<GroundCube>().Init(i, j);
+                    GameObject Ground = Instantiate(GroundCubePrefab);
+                    Ground.transform.parent = transform;
+                    GroundCubePrefab.GetComponent<ControllerGround>().Init(i, j);
                 }
             }
 

@@ -2,25 +2,25 @@ using FrameworkDesign;
 
 namespace OutOfTheBreach
 {
-    public interface IMechaModel : IModel
+    public interface IModelMecha : IModel
     {
-        BindableMechaData [] Mechas { get; }
+        FDataMecha [] Mechas { get; }
     }
 
-    public class MechaModel : AbstractModel, IMechaModel
+    public class ModelMecha : AbstractModel, IModelMecha
     {
         protected override void OnInit()
         {
             ResetArray();
         }
 
-        public BindableMechaData [] Mechas { get; } = new BindableMechaData[3];
+        public FDataMecha [] Mechas { get; } = new FDataMecha[3];
 
         private void ResetArray()
         {
             for (int i = 0; i < 3; i++)
             {
-                Mechas[i] = new BindableMechaData(i);
+                Mechas[i] = new FDataMecha(i);
             }
         }
     }

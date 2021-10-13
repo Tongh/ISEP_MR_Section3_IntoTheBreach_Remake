@@ -7,7 +7,7 @@ namespace OutOfTheBreach
     public class Btn_Mecha : MonoBehaviour, IController
     {
         private IGameModel mGameModel;
-        private IMechaSystem mMechaSystem;
+        private ISystemMecha mMechaSystem;
 
         public int MechaNumber = 0;
 
@@ -15,7 +15,7 @@ namespace OutOfTheBreach
         private void Start()
         {
             mGameModel = this.GetModel<IGameModel>();
-            mMechaSystem = this.GetSystem<IMechaSystem>();
+            mMechaSystem = this.GetSystem<ISystemMecha>();
 
             mGameModel.MechaModels[MechaNumber].RegisterOnValueChanged(OnMechaModelChanged);
             OnMechaModelChanged(mGameModel.MechaModels[MechaNumber].Value);

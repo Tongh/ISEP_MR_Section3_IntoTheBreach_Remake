@@ -10,6 +10,7 @@ namespace OutOfTheBreach
         public BindableProperty<int> ID;
         public BindableProperty<string> MonsterModel;
         public BindableProperty<int> Life;
+        public BindableProperty<int> MaxLife;
         public BindableProperty<int> Speed;
         public BindableProperty<bool> bIsFlying;
         public BindableProperty<bool> bIsInPlace;
@@ -22,6 +23,7 @@ namespace OutOfTheBreach
             ID = new BindableProperty<int>() { Value = id };
             MonsterModel = new BindableProperty<string>() { Value = "" };
             Life = new BindableProperty<int>() { Value = 0 };
+            MaxLife = new BindableProperty<int>() { Value = 0 };
             Speed = new BindableProperty<int>() { Value = 0 };
             bIsFlying = new BindableProperty<bool>() { Value = false };
             bIsInPlace = new BindableProperty<bool>() { Value = false };

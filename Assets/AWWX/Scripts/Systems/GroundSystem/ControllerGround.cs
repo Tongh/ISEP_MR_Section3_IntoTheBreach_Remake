@@ -3,11 +3,11 @@ using FrameworkDesign;
 
 namespace OutOfTheBreach
 {
-    public class GroundCube : MonoBehaviour, IController
+    public class ControllerGround : MonoBehaviour, IController
     {
         private IGameModel mGameModel;
-        private IMapModel mMapModel;
-        private IMapMakerSystem mMapMakerSystem;
+        private IModelGround mMapModel;
+        private ISystemGround mMapMakerSystem;
 
         private int mGroundType;
         private int x, y;
@@ -24,8 +24,8 @@ namespace OutOfTheBreach
             y = Y;
 
             mGameModel = this.GetModel<IGameModel>();
-            mMapModel = this.GetModel<IMapModel>();
-            mMapMakerSystem = this.GetSystem<IMapMakerSystem>();
+            mMapModel = this.GetModel<IModelGround>();
+            mMapMakerSystem = this.GetSystem<ISystemGround>();
 
             transform.position = new Vector3(X, 0, Y);
 

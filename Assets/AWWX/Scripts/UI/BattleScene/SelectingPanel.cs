@@ -8,19 +8,19 @@ namespace OutOfTheBreach
     public class SelectingPanel : MonoBehaviour, IController
     {
         private IGameModel mGameModel;
-        private IMechaModel mMechaModel;
+        private IModelMecha mMechaModel;
         private IMonsterModel mMonsterModel;
 
-        private IMapMakerSystem mMapMakerSystem;
+        private ISystemGround mMapMakerSystem;
 
         private void Start()
         {
             mGameModel = this.GetModel<IGameModel>();
-            mMechaModel = this.GetModel<IMechaModel>();
+            mMechaModel = this.GetModel<IModelMecha>();
             mMonsterModel = this.GetModel<IMonsterModel>();
 
 
-            mMapMakerSystem = this.GetSystem<IMapMakerSystem>();
+            mMapMakerSystem = this.GetSystem<ISystemGround>();
 
             mGameModel.SelectingUnitId.RegisterOnValueChanged(OnSelectingUnitIdChanged);
 
@@ -73,7 +73,7 @@ namespace OutOfTheBreach
                 transform.Find("Description").GetComponent<Text>()
                     .text = data.Description;
                 transform.Find("Life").GetComponent<Text>()
-                    .text = "Life: " + mMonsterModel.Monsters[newValue].Life.Value + " / " + data.Life;
+                    .text = "Life: " + mMonsterModel.Monsters[newValue].Life.Value + " / " + mMonsterModel.Monsters[newValue].MaxLife.Value;
                 transform.Find("Speed").GetComponent<Text>()
                     .text = "Speed: " + mMonsterModel.Monsters[newValue].Speed.Value;
                 transform.Find("Flying").GetComponent<Text>()

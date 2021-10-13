@@ -3,7 +3,7 @@ using FrameworkDesign;
 
 namespace OutOfTheBreach
 {
-    public class Mecha : MonoBehaviour, IController
+    public class ControllerMecha : MonoBehaviour, IController
     {
         private void OnMouseDown()
         {

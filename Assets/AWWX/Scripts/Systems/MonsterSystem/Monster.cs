@@ -51,6 +51,7 @@ namespace OutOfTheBreach
             mMonsterModel.Monsters[id].monsterData = data;
             mMonsterModel.Monsters[id].ID.Value = Id;
             mMonsterModel.Monsters[id].Life.Value = data.Life;
+            mMonsterModel.Monsters[id].MaxLife.Value = data.Life;
             mMonsterModel.Monsters[id].Speed.Value = data.Speed;
             mMonsterModel.Monsters[id].bIsFlying.Value = data.bIsFlying;
             mMonsterModel.Monsters[id].bIsInPlace.Value = true;

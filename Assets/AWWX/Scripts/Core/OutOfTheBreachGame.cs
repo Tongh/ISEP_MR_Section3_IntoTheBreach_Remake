@@ -7,12 +7,12 @@ namespace OutOfTheBreach
         protected override void Init()
         {
             RegisterModel<IGameModel>(new GameModel());
-            RegisterModel<IMapModel>(new MapModel());
-            RegisterModel<IMechaModel>(new MechaModel());
+            RegisterModel<IModelGround>(new ModelGround());
+            RegisterModel<IModelMecha>(new ModelMecha());
             RegisterModel<IMonsterModel>(new MonsterModel());
 
-            RegisterSystem<IMapMakerSystem>(new MapMakerSystem());
-            RegisterSystem<IMechaSystem>(new MechaSystem());
+            RegisterSystem<ISystemGround>(new SystemGround());
+            RegisterSystem<ISystemMecha>(new SystemMecha());
             RegisterSystem<IMonsterSystem>(new MonsterSystem());
             //RegisterSystem<ITurnSystem>(new TurnSystem());
 

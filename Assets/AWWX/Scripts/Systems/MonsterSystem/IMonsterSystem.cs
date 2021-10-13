@@ -16,14 +16,14 @@ namespace OutOfTheBreach
     {
         private IGameModel mGameModel;
         private IMonsterModel mMonsterModel;
-        private IMapMakerSystem mMapMakerSystem;
+        private ISystemGround mMapMakerSystem;
         private MonsterConfigData mMonsterConfigData;
 
         protected override void OnInit()
         {
             mGameModel = this.GetModel<IGameModel>();
             mMonsterModel = this.GetModel<IMonsterModel>();
-            mMapMakerSystem = this.GetSystem<IMapMakerSystem>();
+            mMapMakerSystem = this.GetSystem<ISystemGround>();
             var storage = this.GetUtility<IStorage>();
 
             mMonsterConfigData = storage.LoadMonsterConfigData();

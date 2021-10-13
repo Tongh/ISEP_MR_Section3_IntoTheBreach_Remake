@@ -4,7 +4,7 @@ using UnityEngine.Assertions;
 
 namespace OutOfTheBreach
 {
-    public class MechasNode : MonoBehaviour, IController
+    public class NodeMecha : MonoBehaviour, IController
     {
         public GameObject MechaPrefab;
 
@@ -31,7 +31,7 @@ namespace OutOfTheBreach
             {
                 GameObject mecha = Instantiate(MechaPrefab);
                 mecha.transform.parent = transform;
-                MechaPrefab.GetComponent<Mecha>().Init(i);
+                MechaPrefab.GetComponent<ControllerMecha>().Init(i);
             }
 
             this.SendCommand<WaitMechaInPlaceCommand>();

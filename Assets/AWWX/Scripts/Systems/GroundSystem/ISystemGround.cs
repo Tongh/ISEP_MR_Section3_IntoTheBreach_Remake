@@ -4,22 +4,22 @@ using UnityEngine.Assertions;
 
 namespace OutOfTheBreach
 {
-    public interface IMapMakerSystem : ISystem
+    public interface ISystemGround : ISystem
     {
         Material GetMateirialByGround(int GroundTypeInt);
         Vector2Int RandomBirthGround();
         MapGroundConfigData GetMapGroundConfigDataByGroundTypeInt(int GroundTypeInt);
     }
 
-    public class MapMakerSystem : AbstractSystem, IMapMakerSystem
+    public class SystemGround : AbstractSystem, ISystemGround
     {
-        private IMapModel mMapModel;
+        private IModelGround mMapModel;
         private MapMakerConfigData mMapMakerConfigData;
         private StyleMapConfigData mStyleMapConfigData;
 
         protected override void OnInit()
         {
-            mMapModel = this.GetModel<IMapModel>();
+            mMapModel = this.GetModel<IModelGround>();
             var storage = this.GetUtility<IStorage>();
 
             mMapMakerConfigData = storage.LoadMapMakerConfigData();
@@ -49,7 +49,7 @@ namespace OutOfTheBreach
             return null;
         }
 
-        private string GetGroundMaterialRessourceString(EMapGroundType GroundType)
+        private string GetGroundMaterialRessourceString(ETypeGround GroundType)
         {
             return "Materials/Ground/M_" + GroundType.ToString() + "_" + mStyleMapConfigData.StyleId;
         }
@@ -69,7 +69,7 @@ namespace OutOfTheBreach
             {
                 for (int j = 0; j < 8; j++)
                 {
-                    if (mMapModel.GroundTypeMap[i, j].Value == (int)EMapGroundType.Ground)
+                    if (mMapModel.GroundTypeMap[i, j].Value == (int)ETypeGround.Ground)
                     {
                         mMapModel.GroundTypeMap[i, j].Value = RandomLibrary.randAdd(prob, 100);
                     }
@@ -88,8 +88,8 @@ namespace OutOfTheBreach
 
                 int groundtype = mMapModel.GroundTypeMap[i, j].Value;
                 bool GroundCanStand =
-                    groundtype == (int)EMapGroundType.Ground ||
-                    groundtype == (int)EMapGroundType.Special;
+                    groundtype == (int)ETypeGround.Ground ||
+                    groundtype == (int)ETypeGround.Special;
 
                 bool someonehere = mMapModel.bIsSomeoneHereMap[i, j].Value;
 

@@ -10,7 +10,7 @@ namespace OutOfTheBreach
         protected override void OnExecute()
         {
             var gameModel = this.GetModel<IGameModel>();
-            var mechaSystem = this.GetSystem<IMechaSystem>();
+            var mechaSystem = this.GetSystem<ISystemMecha>();
 
             List<int> indexs = Enumerable.Range(0, mechaSystem.GetMechasNum()).ToArray().ToList();
 
