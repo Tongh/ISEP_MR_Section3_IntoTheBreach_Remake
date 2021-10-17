@@ -14,6 +14,7 @@ namespace OutOfTheBreach
             mGameModel = this.GetModel<IGameModel>();
             mGameModel.Energy.RegisterOnValueChanged(OnEnergyChanged);
             mGameModel.TurnLeft.RegisterOnValueChanged(OnTurnLeftChanged);
+            mGameModel.TurnPhase.RegisterOnValueChanged(OnTurnPhaseChanged);
 
             OnEnergyChanged(mGameModel.Energy.Value);
             OnTurnLeftChanged(mGameModel.TurnLeft.Value);
@@ -23,8 +24,15 @@ namespace OutOfTheBreach
         {
             mGameModel.Energy.UnRegisterOnValueChanged(OnEnergyChanged);
             mGameModel.TurnLeft.UnRegisterOnValueChanged(OnTurnLeftChanged);
+            mGameModel.TurnPhase.UnRegisterOnValueChanged(OnTurnPhaseChanged);
             mGameModel = null;
         }
+
+        private void OnTurnPhaseChanged(int newValue)
+        {
+            transform.Find("PhaseText").GetComponent<Text>()
+                .text = "" + (ETurnState)newValue;
+        }    
 
         private void OnEnergyChanged(int newValue)
         {

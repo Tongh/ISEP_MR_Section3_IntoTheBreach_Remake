@@ -1,4 +1,5 @@
 using FrameworkDesign;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -10,6 +11,9 @@ namespace OutOfTheBreach
         Vector2Int RandomBirthGround();
         FDataMapGround GetMapGroundConfigDataByGroundTypeInt(int GroundTypeInt);
         bool IsLocationValidForStanding(Vector2Int Loc2);
+        Vector2Int GetRandomTargetLocCanAttack(Vector2Int MyLoc, int Speed);
+        Vector2Int GetLocToAttack(Vector2Int Target, Vector2Int MyLoc, int Speed);
+        List<Vector2Int> GetAllLocationsCanMoveTo(Vector2Int MyLoc, int Speed);
     }
 
     public class SystemGround : AbstractSystem, ISystemGround
@@ -92,14 +96,14 @@ namespace OutOfTheBreach
                     groundtype == (int)ETypeGround.Ground ||
                     groundtype == (int)ETypeGround.Special;
 
-                bool someonehere = mMapModel.bIsSomeoneHereMap[i, j].Value;
+                int someonehere = mMapModel.StandingMap[i, j].Value;
 
-                if (GroundCanStand && !someonehere)
+                if (GroundCanStand && someonehere == 0)
                 {
                     ret.x = i;
                     ret.y = j;
 
-                    mMapModel.bIsSomeoneHereMap[i, j].Value = true;
+                    mMapModel.StandingMap[i, j].Value = 2;
 
                     finded = true;
                 }
@@ -122,14 +126,110 @@ namespace OutOfTheBreach
                 groundtype == (int)ETypeGround.Special ||
                 groundtype == (int)ETypeGround.Water;
 
-            bool someonehere = mMapModel.bIsSomeoneHereMap[Loc2.x, Loc2.y].Value;
+            int someonehere = mMapModel.StandingMap[Loc2.x, Loc2.y].Value;
 
-            if (GroundCanStand && !someonehere)
+            if (GroundCanStand && someonehere == 0)
             {
                 return true;
             }
 
             return false;
+        }
+
+        private List<Vector2Int> GetAllTargetLocCanAttack(List<Vector2Int> AllLocs)
+        {
+            List<Vector2Int> ret = new List<Vector2Int>();
+
+            foreach (Vector2Int eachLoc in AllLocs)
+            {
+                foreach (Vector2Int eachAdjcent in GetAdjcentLocs(eachLoc))
+                {
+                    int StandingUnit = mMapModel.StandingMap[eachAdjcent.x, eachAdjcent.y].Value;
+                    if (StandingUnit == 1 || StandingUnit == 3)
+                    {
+                        ret.Add(eachAdjcent);
+                    }
+                }
+            }
+
+            return ret;
+        }
+
+        private List<Vector2Int> GetAdjcentLocs(Vector2Int loc)
+        {
+            List<Vector2Int> ret = new List<Vector2Int>();
+
+            if (loc.x > 0)
+            {
+                ret.Add(new Vector2Int(loc.x - 1, loc.y));
+            }
+            if (loc.x < 7)
+            {
+                ret.Add(new Vector2Int(loc.x + 1, loc.y));
+            }
+            if (loc.y > 0)
+            {
+                ret.Add(new Vector2Int(loc.x, loc.y - 1));
+            }
+            if (loc.y < 7)
+            {
+                ret.Add(new Vector2Int(loc.x, loc.y + 1));
+            }
+
+            return ret;
+        }
+
+        public List<Vector2Int> GetAllLocationsCanMoveTo(Vector2Int MyLoc, int Speed)
+        {
+            List<Vector2Int> ret = new List<Vector2Int>();
+
+            for (int i = 0; i < 8; i++)
+            {
+                for (int j = 0; j < 8; j++)
+                {
+                    int Distance = MyLoc.x - i + MyLoc.y - j;
+                    if (Distance <= Speed && IsLocationValidForStanding(new Vector2Int(i, j)))
+                    {
+                        ret.Add(new Vector2Int(i, j));
+                    }
+                }
+            }
+
+            return ret;
+        }
+
+        public Vector2Int GetRandomTargetLocCanAttack(Vector2Int MyLoc, int Speed)
+        {
+            List<Vector2Int> allLocsCanMoveTo = GetAllLocationsCanMoveTo(MyLoc, Speed);
+            List<Vector2Int> allTargetLocsCanAttack = GetAllTargetLocCanAttack(allLocsCanMoveTo);
+
+            if (allTargetLocsCanAttack.Count < 1)
+            {
+                return new Vector2Int(-1, -1);
+            }
+
+            return allTargetLocsCanAttack[Random.Range(0, allTargetLocsCanAttack.Count)];
+        }
+
+        public Vector2Int GetLocToAttack(Vector2Int Target, Vector2Int MyLoc, int Speed)
+        {
+            List<Vector2Int> allLocsCanMoves = GetAllLocationsCanMoveTo(MyLoc, Speed);
+            if (Target == new Vector2Int(-1, -1))
+            {
+                return allLocsCanMoves[Random.Range(0, allLocsCanMoves.Count)];
+            }
+            List<Vector2Int> possibles = new List<Vector2Int>();
+            foreach (Vector2Int eachLoc in allLocsCanMoves)
+            {
+                foreach (Vector2Int eachAdjcent in GetAdjcentLocs(eachLoc))
+                {
+                    if (Target == eachAdjcent)
+                    {
+                        possibles.Add(eachAdjcent);
+                    }
+                }
+            }
+            return possibles[Random.Range(0, possibles.Count)];
         }
     }
 }

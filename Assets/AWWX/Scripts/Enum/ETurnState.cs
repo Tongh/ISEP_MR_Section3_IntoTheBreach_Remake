@@ -8,6 +8,6 @@ namespace OutOfTheBreach
         FutureShowing, // Monster Attack Target & New Monster Position
         PlayerActionPhase, // Move, Attack, End
         MonsterAttackPhase, // Monster Attack, New Monster Out
-        TurnEnding,
+        TurnEnding
     }
 }

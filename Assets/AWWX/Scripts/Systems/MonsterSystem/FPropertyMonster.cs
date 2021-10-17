@@ -17,6 +17,7 @@ namespace OutOfTheBreach
         public BindableProperty<bool> bIsAlive;
         public BindableProperty<Vector2Int> Position;
         public BindableProperty<Vector2Int> Direction;
+        public BindableProperty<Vector2Int> TargetPosition;
 
         public FPropertyMonster(int id)
         {
@@ -30,6 +31,7 @@ namespace OutOfTheBreach
             bIsAlive = new BindableProperty<bool>() { Value = false };
             Position = new BindableProperty<Vector2Int>() { Value = Vector2Int.zero };
             Direction = new BindableProperty<Vector2Int>() { Value = Vector2Int.up };
+            TargetPosition = new BindableProperty<Vector2Int>() { Value = Vector2Int.zero };
         }
     }
 }

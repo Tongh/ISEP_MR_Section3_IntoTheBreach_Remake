@@ -10,21 +10,21 @@
       {
         "MonsterId": "GigaSlime",
         "Description": "Bound the opponent in front of him and unable to move.",
-        "Speed": 5,
+        "Speed": 4,
         "Life": 2,
         "bIsFlying": 0
       },
       {
         "MonsterId": "DonkeyKong",
         "Description": "Throw a huge banana peel in the distance.",
-        "Speed": 5,
+        "Speed": 3,
         "Life": 2,
         "bIsFlying": 0
       },
       {
         "MonsterId": "Balloon",
         "Description": "The mascot that can increase the maximum life of all monsters.",
-        "Speed": 6,
+        "Speed": 4,
         "Life": 2,
         "bIsFlying": 1
       }

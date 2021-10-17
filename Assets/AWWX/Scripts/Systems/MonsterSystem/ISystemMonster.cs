@@ -1,4 +1,5 @@
 using FrameworkDesign;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -16,27 +17,57 @@ namespace OutOfTheBreach
     {
         private IGameModel mGameModel;
         private IModelMonster mMonsterModel;
-        private ISystemGround mMapMakerSystem;
+        private ISystemGround mSystemGround;
         private FDataAllMonster mMonsterConfigData;
 
         protected override void OnInit()
         {
             mGameModel = this.GetModel<IGameModel>();
             mMonsterModel = this.GetModel<IModelMonster>();
-            mMapMakerSystem = this.GetSystem<ISystemGround>();
+            mSystemGround = this.GetSystem<ISystemGround>();
             var storage = this.GetUtility<IStorage>();
 
             mMonsterConfigData = storage.LoadMonsterConfigData();
 
-            this.RegisterEvent<EventInitMonster>(e =>
+            this.RegisterEvent<EventInitMonster>(InitMonster);
+
+            this.RegisterEvent<EventMonsterMovePhase>(OnEnterMonsterMovePhase);
+        }
+
+        private void OnEnterMonsterMovePhase(EventMonsterMovePhase e)
+        {
+            RandomAttackTarget();
+        }
+
+        private void RandomAttackTarget()
+        {
+            for (int i = 0; i < mMonsterModel.Monsters.Length; i++)
             {
-                MakeMonstersData();
+                if (mMonsterModel.Monsters[i].bIsAlive.Value)
+                {
+                    Vector2Int loc = mMonsterModel.Monsters[i].Position.Value;
+                    int speed = mMonsterModel.Monsters[i].Speed.Value;
+                    Vector2Int target = mSystemGround.GetRandomTargetLocCanAttack(loc, speed);
+                    mMonsterModel.Monsters[i].TargetPosition.Value = target;
+                    Vector2Int pos = mSystemGround.GetLocToAttack(target, loc, speed);
+                    mMonsterModel.Monsters[i].Position.Value = pos;
+                }
+            }
+        }
 
-                Assert.IsTrue(mGameModel.GameState.Value == (int)EGameState.MonsterPreparing, nameof(EGameState.MonsterComing) + " must after " + nameof(EGameState.MonsterPreparing));
-                mGameModel.GameState.Value = (int)EGameState.MonsterComing;
+        private Vector2Int RandomAttackTargetInList(List<Vector2Int> list)
+        {
+            return list[Random.Range(0, list.Count)];
+        }
 
-                this.SendEvent<EventMonsterCome>();
-            });
+        private void InitMonster(EventInitMonster e)
+        {
+            MakeMonstersData();
+
+            Assert.IsTrue(mGameModel.GameState.Value == (int)EGameState.MonsterPreparing, nameof(EGameState.MonsterComing) + " must after " + nameof(EGameState.MonsterPreparing));
+            mGameModel.GameState.Value = (int)EGameState.MonsterComing;
+
+            this.SendEvent<EventMonsterCome>();
         }
 
         private void MakeMonstersData()
@@ -51,9 +82,9 @@ namespace OutOfTheBreach
         private void RandomMonster()
         {
             int monstertype = Random.Range(0, GetMonstersTypeNum());
-            Vector2Int position = mMapMakerSystem.RandomBirthGround();
+            Vector2Int position = mSystemGround.RandomBirthGround();
 
-            int monsterindex = GetNextNewMonsterIndex();
+            int monsterindex = GetNextNewDyingMonsterIndex();
 
             mMonsterModel.Monsters[monsterindex].MonsterModel.Value = GetMonsterIdByIndex(monstertype);
             mMonsterModel.Monsters[monsterindex].Position.Value = position;
@@ -88,7 +119,7 @@ namespace OutOfTheBreach
             return -1;
         }
 
-        public int GetNextNewMonsterIndex()
+        public int GetNextNewDyingMonsterIndex()
         {
             for (int i = 0; i < mMonsterModel.Monsters.Length; i++)
             {

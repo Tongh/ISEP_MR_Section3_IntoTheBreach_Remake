@@ -12,7 +12,6 @@ namespace OutOfTheBreach
         private ISystemGround mSystemGround;
 
         public int id;
-        private bool bShouldFollowCursor = false;
         private Vector3 TargetLocation;
         private Coroutine CoroutineFollowCursorMove = null;
         private Coroutine CoroutineEjection = null;
