@@ -54,7 +54,7 @@ namespace OutOfTheBreach
 
         private void OnMechaModelChanged(string newValue)
         {
-            MechaData data = mMechaSystem.GetMechaDataById(newValue);
+            FDataMecha data = mMechaSystem.GetMechaDataById(newValue);
 
             var tex = GameplayLibrary.GetMechaPreviewTex(newValue);
             transform.Find("Panel/RawImage").GetComponent<RawImage>()

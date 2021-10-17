@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace OutOfTheBreach
 {
-    public class FDataMecha
+    public class FPropertyMecha
     {
         public BindableProperty<int> ID;
         public BindableProperty<string> NickName;
@@ -16,7 +16,7 @@ namespace OutOfTheBreach
         public BindableProperty<Vector2Int> Position;
         public BindableProperty<Vector2Int> Direction;
 
-        public FDataMecha(int id)
+        public FPropertyMecha(int id)
         {
             ID = new BindableProperty<int>() { Value = id };
             NickName = new BindableProperty<string>() { Value = "" };

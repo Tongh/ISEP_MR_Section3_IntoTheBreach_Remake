@@ -5,28 +5,28 @@ using UnityEngine.Assertions;
 
 namespace OutOfTheBreach
 {
-    public class JsonStorage : MyJsonUtility
+    public class StorageJson : IStorageJson
     {
-        public override MapMakerConfigData LoadMapMakerConfigData()
+        public override FDataAllMapGround LoadMapMakerConfigData()
         {
             const string FileName = "MapMakerConfigData.json";
-            return ReadJsonStructFromFile<MapMakerConfigData>(FileName);
+            return ReadJsonStructFromFile<FDataAllMapGround>(FileName);
         }
 
-        public override MechaConfigData LoadMechaConfigData()
+        public override FDataAllMecha LoadMechaConfigData()
         {
             const string FileName = "MechasConfigData.json";
-            return ReadJsonStructFromFile<MechaConfigData>(FileName);
+            return ReadJsonStructFromFile<FDataAllMecha>(FileName);
         }
 
-        public override MonsterConfigData LoadMonsterConfigData()
+        public override FDataAllMonster LoadMonsterConfigData()
         {
             const string FileName = "MonstersConfigData.json";
-            return ReadJsonStructFromFile<MonsterConfigData>(FileName);
+            return ReadJsonStructFromFile<FDataAllMonster>(FileName);
         }
     }
 
-    public abstract class MyJsonUtility : IStorage
+    public abstract class IStorageJson : IStorage
     {
         protected string JsonPath = Application.dataPath + "/AWWX/Config/Json/";
 
@@ -64,8 +64,8 @@ namespace OutOfTheBreach
             File.WriteAllText(JsonFileFromPath, JsonString);
         }
 
-        public abstract MapMakerConfigData LoadMapMakerConfigData();
-        public abstract MechaConfigData LoadMechaConfigData();
-        public abstract MonsterConfigData LoadMonsterConfigData();
+        public abstract FDataAllMapGround LoadMapMakerConfigData();
+        public abstract FDataAllMecha LoadMechaConfigData();
+        public abstract FDataAllMonster LoadMonsterConfigData();
     }
 }

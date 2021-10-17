@@ -3,13 +3,13 @@ using System;
 namespace OutOfTheBreach
 {
     [Serializable]
-    public struct MonsterConfigData
+    public struct FDataAllMonster
     {
-        public MonsterData[] MonstersData;
+        public FDataMonster[] MonstersData;
     }
 
     [Serializable]
-    public struct MonsterData
+    public struct FDataMonster
     {
         public string MonsterId;
         public string Description;

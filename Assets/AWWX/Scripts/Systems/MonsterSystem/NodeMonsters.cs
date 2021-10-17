@@ -4,21 +4,21 @@ using UnityEngine.Assertions;
 
 namespace OutOfTheBreach
 {
-    public class MonstersNode : MonoBehaviour, IController
+    public class NodeMonsters : MonoBehaviour, IController
     {
         public GameObject MonsterPrefab;
 
         void Start()
         {
-            this.RegisterEvent<MonsterComeEvent>(InitMonster);
+            this.RegisterEvent<EventMonsterCome>(InitMonster);
         }
 
         private void OnDestroy()
         {
-            this.UnRegisterEvent<MonsterComeEvent>(InitMonster);
+            this.UnRegisterEvent<EventMonsterCome>(InitMonster);
         }
 
-        private void InitMonster(MonsterComeEvent e)
+        private void InitMonster(EventMonsterCome e)
         {
             foreach (Transform childTrans in transform)
             {
@@ -31,7 +31,7 @@ namespace OutOfTheBreach
             {
                 GameObject monster = Instantiate(MonsterPrefab);
                 monster.transform.parent = transform;
-                monster.GetComponent<Monster>().Init(i + 3);
+                monster.GetComponent<ControllerMonster>().Init(i + 3);
             }
         }
 

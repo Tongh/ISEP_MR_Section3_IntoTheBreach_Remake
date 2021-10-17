@@ -3,7 +3,7 @@ using UnityEngine.Assertions;
 
 namespace OutOfTheBreach
 {
-    public class PrepareMonsterCommand : AbstractCommand
+    public class CommandPrepareMonster : AbstractCommand
     {
         protected override void OnExecute()
         {
@@ -12,7 +12,7 @@ namespace OutOfTheBreach
             Assert.IsTrue(gameModel.GameState.Value == (int)EGameState.GamePreparing, nameof(EGameState.MonsterPreparing) + " must after " + nameof(EGameState.GamePreparing));
             gameModel.GameState.Value = (int)EGameState.MonsterPreparing;
 
-            this.SendEvent<InitMonsterEvent>();
+            this.SendEvent<EventInitMonster>();
         }
     }
 }

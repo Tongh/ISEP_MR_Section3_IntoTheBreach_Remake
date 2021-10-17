@@ -2,12 +2,12 @@ using FrameworkDesign;
 
 namespace OutOfTheBreach
 {
-    public interface ITurnSystem : ISystem
+    public interface ISystemTurn : ISystem
     {
 
     }
 
-    public class TurnSystem : AbstractSystem, ITurnSystem
+    public class SystemTurn : AbstractSystem, ISystemTurn
     {
 
         protected override void OnInit()

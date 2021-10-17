@@ -10,33 +10,31 @@ namespace OutOfTheBreach
         private ISystemGround mMapMakerSystem;
 
         private int mGroundType;
-        private int x, y;
+        public int x, y;
 
         private void OnMouseDown()
         {
-            //mGameModel.SelectingUnitId.Value = -2;
-            //mGameModel.SelectingGroundType.Value = mMapModel.GroundTypeMap[x, y].Value;
+            mGameModel.SelectingUnitId.Value = -2;
+            mGameModel.SelectingGroundType.Value = mMapModel.GroundTypeMap[x, y].Value;
         }
 
-        public void Init(int X, int Y)
+        public void Start()
         {
-            x = X;
-            y = Y;
 
             mGameModel = this.GetModel<IGameModel>();
             mMapModel = this.GetModel<IModelGround>();
             mMapMakerSystem = this.GetSystem<ISystemGround>();
 
-            transform.position = new Vector3(X, 0, Y);
+            transform.position = new Vector3(x, 0, y);
 
-            mMapModel.GroundTypeMap[X, Y].RegisterOnValueChanged(OnGroundChanged);
+            mMapModel.GroundTypeMap[x, y].RegisterOnValueChanged(OnGroundChanged);
 
-            OnGroundChanged(mMapModel.GroundTypeMap[X, Y].Value);
+            OnGroundChanged(mMapModel.GroundTypeMap[x, y].Value);
         }
 
         private void OnDestroy()
         {
-            //mMapModel.GroundTypeMap[x, y].UnRegisterOnValueChanged(OnGroundChanged);
+            mMapModel.GroundTypeMap[x, y].UnRegisterOnValueChanged(OnGroundChanged);
             mMapModel = null;
         }
 

@@ -2,7 +2,7 @@ using FrameworkDesign;
 
 namespace OutOfTheBreach
 {
-    public class PrepareGameCommand : AbstractCommand
+    public class CommandPrepareGame : AbstractCommand
     {
         protected override void OnExecute()
         {
@@ -10,7 +10,7 @@ namespace OutOfTheBreach
 
             gameModel.GameState.Value = (int)EGameState.GamePreparing;
 
-            this.SendEvent<GamePrepareEvent>();
+            this.SendEvent<EventGamePrepare>();
         }
     }
 }

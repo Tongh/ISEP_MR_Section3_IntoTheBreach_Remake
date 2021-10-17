@@ -3,13 +3,13 @@ using System;
 namespace OutOfTheBreach
 {
     [Serializable]
-    public struct MechaConfigData
+    public struct FDataAllMecha
     {
-        public MechaData[] MechasData;
+        public FDataMecha[] MechasData;
     }
 
     [Serializable]
-    public struct MechaData
+    public struct FDataMecha
     {
         public string MechaId;
         public string Description;

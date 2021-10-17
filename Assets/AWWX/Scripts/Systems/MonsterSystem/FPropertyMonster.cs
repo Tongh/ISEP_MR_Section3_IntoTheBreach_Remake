@@ -3,9 +3,9 @@ using UnityEngine;
 
 namespace OutOfTheBreach
 {
-    public class BindableMonsterData
+    public class FPropertyMonster
     {
-        public MonsterData monsterData;
+        public FDataMonster monsterData;
 
         public BindableProperty<int> ID;
         public BindableProperty<string> MonsterModel;
@@ -18,7 +18,7 @@ namespace OutOfTheBreach
         public BindableProperty<Vector2Int> Position;
         public BindableProperty<Vector2Int> Direction;
 
-        public BindableMonsterData(int id)
+        public FPropertyMonster(int id)
         {
             ID = new BindableProperty<int>() { Value = id };
             MonsterModel = new BindableProperty<string>() { Value = "" };

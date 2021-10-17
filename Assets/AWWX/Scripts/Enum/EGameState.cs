@@ -7,11 +7,7 @@ namespace OutOfTheBreach
         MonsterPreparing,
         MonsterComing,
         MechaInPlacing,
-        MonsterMovePhase,
-        FutureShowing,
-        PlayerActionPhase,
-        MonsterAttackPhase,
-        TurnEnding,
+        Gameing,
         GameEnding
     }
 }

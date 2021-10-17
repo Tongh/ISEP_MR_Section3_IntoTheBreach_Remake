@@ -8,15 +8,15 @@ namespace OutOfTheBreach
         string GetMechaIdByInt(int index);
         int GetMechaindexById(string id);
         int GetMechasNum();
-        MechaData GetMechaDataById(string id);
-        MechaData GetMechaDataByInt(int index);
+        FDataMecha GetMechaDataById(string id);
+        FDataMecha GetMechaDataByInt(int index);
     }
 
     public class SystemMecha : AbstractSystem, ISystemMecha
     {
         private IGameModel mGameModel;
         private IModelMecha mMechaModel;
-        private MechaConfigData mMechaConfigData;
+        private FDataAllMecha mMechaConfigData;
 
         protected override void OnInit()
         {
@@ -32,12 +32,12 @@ namespace OutOfTheBreach
                 mGameModel.MechaModels[i].Value = mMechaConfigData.MechasData[i].MechaId;
             }
 
-            this.RegisterEvent<GamePrepareEvent>(e =>
+            this.RegisterEvent<EventGamePrepare>(e =>
             {
-                this.SendEvent<InitMechaEvent>();
+                this.SendEvent<EventInitMecha>();
             });
 
-            this.RegisterEvent<MechaInPlacingEvent>(e =>
+            this.RegisterEvent<EventMechaInPlacing>(e =>
             {
             });
         }
@@ -65,7 +65,7 @@ namespace OutOfTheBreach
             return mMechaConfigData.MechasData.Length;
         }
 
-        public MechaData GetMechaDataById(string id)
+        public FDataMecha GetMechaDataById(string id)
         {
             for (int i = 0; i < mMechaConfigData.MechasData.Length; i++)
             {
@@ -75,10 +75,10 @@ namespace OutOfTheBreach
                 }
             }
             Assert.IsTrue(false, "Mecha id " + id + " Not Found!");
-            return new MechaData();
+            return new FDataMecha();
         }
 
-        public MechaData GetMechaDataByInt(int index)
+        public FDataMecha GetMechaDataByInt(int index)
         {
             return GetMechaDataById(GetMechaIdByInt(index));
         }

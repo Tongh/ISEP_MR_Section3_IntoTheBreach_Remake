@@ -1,6 +1,6 @@
 namespace OutOfTheBreach
 {
-    public struct GamePrepareEvent
+    public struct EventMechaInPlacing
     {
     }
 }

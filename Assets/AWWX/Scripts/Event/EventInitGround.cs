@@ -1,6 +1,6 @@
 namespace OutOfTheBreach
 {
-    public struct MonsterComeEvent
+    public struct EventInitGround
     {
     }
 }

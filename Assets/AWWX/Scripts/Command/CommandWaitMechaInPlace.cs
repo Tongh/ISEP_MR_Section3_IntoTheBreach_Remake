@@ -3,7 +3,7 @@ using UnityEngine.Assertions;
 
 namespace OutOfTheBreach
 {
-    public class WaitMechaInPlaceCommand : AbstractCommand
+    public class CommandWaitMechaInPlace : AbstractCommand
     {
         protected override void OnExecute()
         {
@@ -12,7 +12,7 @@ namespace OutOfTheBreach
             Assert.IsTrue(gameModel.GameState.Value == (int)EGameState.MonsterComing, nameof(EGameState.MechaInPlacing) + " must after " + nameof(EGameState.MonsterComing));
             gameModel.GameState.Value = (int)EGameState.MechaInPlacing;
 
-            this.SendEvent<MechaInPlacingEvent>();
+            this.SendEvent<EventMechaInPlacing>();
         }
     }
 }

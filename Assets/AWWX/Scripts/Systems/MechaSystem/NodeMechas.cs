@@ -4,21 +4,21 @@ using UnityEngine.Assertions;
 
 namespace OutOfTheBreach
 {
-    public class NodeMecha : MonoBehaviour, IController
+    public class NodeMechas : MonoBehaviour, IController
     {
         public GameObject MechaPrefab;
 
         void Start()
         {
-            this.RegisterEvent<InitMechaEvent>(InitMecha);
+            this.RegisterEvent<EventInitMecha>(InitMecha);
         }
 
         private void OnDestroy()
         {
-            this.UnRegisterEvent<InitMechaEvent>(InitMecha);
+            this.UnRegisterEvent<EventInitMecha>(InitMecha);
         }
 
-        private void InitMecha(InitMechaEvent e)
+        private void InitMecha(EventInitMecha e)
         {
             foreach (Transform childTrans in transform)
             {
@@ -34,7 +34,7 @@ namespace OutOfTheBreach
                 MechaPrefab.GetComponent<ControllerMecha>().Init(i);
             }
 
-            this.SendCommand<WaitMechaInPlaceCommand>();
+            this.SendCommand<CommandWaitMechaInPlace>();
         }
 
         public IArchitecture GetArchitecture()

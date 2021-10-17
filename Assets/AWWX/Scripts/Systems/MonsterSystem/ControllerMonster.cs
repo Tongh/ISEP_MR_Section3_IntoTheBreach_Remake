@@ -4,11 +4,11 @@ using System.Collections;
 
 namespace OutOfTheBreach
 {
-    public class Monster : MonoBehaviour, IController
+    public class ControllerMonster : MonoBehaviour, IController
     {
         private IGameModel mGameModel;
-        private IMonsterModel mMonsterModel;
-        private IMonsterSystem mMonsterSystem;
+        private IModelMonster mMonsterModel;
+        private ISystemMonster mMonsterSystem;
 
         private int Id;
         private Vector3 NextLocation;
@@ -23,8 +23,8 @@ namespace OutOfTheBreach
         {
             this.Id = id;
             mGameModel = this.GetModel<IGameModel>();
-            mMonsterModel = this.GetModel<IMonsterModel>();
-            mMonsterSystem = this.GetSystem<IMonsterSystem>();
+            mMonsterModel = this.GetModel<IModelMonster>();
+            mMonsterSystem = this.GetSystem<ISystemMonster>();
 
             mMonsterModel.Monsters[Id - 3].Position.RegisterOnValueChanged(OnPositionChanged);
             mMonsterModel.Monsters[Id - 3].bIsAlive.RegisterOnValueChanged(OnbIsAliveChanged);
@@ -46,7 +46,7 @@ namespace OutOfTheBreach
             int id = Id - 3;
             string monstertype = mMonsterModel.Monsters[id].MonsterModel.Value;
             if (monstertype.Equals("")) return;
-            MonsterData data = mMonsterSystem.GetMonsterDataById(monstertype);
+            FDataMonster data = mMonsterSystem.GetMonsterDataById(monstertype);
 
             mMonsterModel.Monsters[id].monsterData = data;
             mMonsterModel.Monsters[id].ID.Value = Id;

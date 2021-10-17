@@ -4,38 +4,38 @@ using UnityEngine.Assertions;
 
 namespace OutOfTheBreach
 {
-    public interface IMonsterSystem : ISystem
+    public interface ISystemMonster : ISystem
     {
         Material GetMateirialByMonsterType(string MonsterType);
-        MonsterData GetMonsterDataByIndex(int index);
-        MonsterData GetMonsterDataById(string id);
+        FDataMonster GetMonsterDataByIndex(int index);
+        FDataMonster GetMonsterDataById(string id);
         int GetMonsterIndexById(string id);
     }
 
-    public class MonsterSystem : AbstractSystem, IMonsterSystem
+    public class SystemMonster : AbstractSystem, ISystemMonster
     {
         private IGameModel mGameModel;
-        private IMonsterModel mMonsterModel;
+        private IModelMonster mMonsterModel;
         private ISystemGround mMapMakerSystem;
-        private MonsterConfigData mMonsterConfigData;
+        private FDataAllMonster mMonsterConfigData;
 
         protected override void OnInit()
         {
             mGameModel = this.GetModel<IGameModel>();
-            mMonsterModel = this.GetModel<IMonsterModel>();
+            mMonsterModel = this.GetModel<IModelMonster>();
             mMapMakerSystem = this.GetSystem<ISystemGround>();
             var storage = this.GetUtility<IStorage>();
 
             mMonsterConfigData = storage.LoadMonsterConfigData();
 
-            this.RegisterEvent<InitMonsterEvent>(e =>
+            this.RegisterEvent<EventInitMonster>(e =>
             {
                 MakeMonstersData();
 
                 Assert.IsTrue(mGameModel.GameState.Value == (int)EGameState.MonsterPreparing, nameof(EGameState.MonsterComing) + " must after " + nameof(EGameState.MonsterPreparing));
                 mGameModel.GameState.Value = (int)EGameState.MonsterComing;
 
-                this.SendEvent<MonsterComeEvent>();
+                this.SendEvent<EventMonsterCome>();
             });
         }
 
@@ -65,7 +65,7 @@ namespace OutOfTheBreach
             return mMonsterConfigData.MonstersData.Length;
         }
 
-        public MonsterData GetMonsterDataByIndex(int index)
+        public FDataMonster GetMonsterDataByIndex(int index)
         {
             return mMonsterConfigData.MonstersData[index];
         }
@@ -113,7 +113,7 @@ namespace OutOfTheBreach
             return "Materials/Monster/M_Monster_" + MonsterType;
         }
 
-        public MonsterData GetMonsterDataById(string id)
+        public FDataMonster GetMonsterDataById(string id)
         {
             return GetMonsterDataByIndex(GetMonsterIndexById(id));
         }

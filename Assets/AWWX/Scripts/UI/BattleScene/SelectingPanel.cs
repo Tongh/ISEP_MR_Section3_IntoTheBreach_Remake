@@ -9,7 +9,7 @@ namespace OutOfTheBreach
     {
         private IGameModel mGameModel;
         private IModelMecha mMechaModel;
-        private IMonsterModel mMonsterModel;
+        private IModelMonster mMonsterModel;
 
         private ISystemGround mMapMakerSystem;
 
@@ -17,12 +17,12 @@ namespace OutOfTheBreach
         {
             mGameModel = this.GetModel<IGameModel>();
             mMechaModel = this.GetModel<IModelMecha>();
-            mMonsterModel = this.GetModel<IMonsterModel>();
-
+            mMonsterModel = this.GetModel<IModelMonster>();
 
             mMapMakerSystem = this.GetSystem<ISystemGround>();
 
             mGameModel.SelectingUnitId.RegisterOnValueChanged(OnSelectingUnitIdChanged);
+            mGameModel.SelectingGroundType.RegisterOnValueChanged(OnSelectingGroundTypeChanged);
 
             OnSelectingUnitIdChanged(-1);
         }
@@ -30,6 +30,7 @@ namespace OutOfTheBreach
         private void OnDestroy()
         {
             mGameModel.SelectingUnitId.UnRegisterOnValueChanged(OnSelectingUnitIdChanged);
+            mGameModel.SelectingGroundType.UnRegisterOnValueChanged(OnSelectingGroundTypeChanged);
             mGameModel = null;
         }
 
@@ -42,21 +43,7 @@ namespace OutOfTheBreach
             else if (newValue == -2) // Ground
             {
                 int groundtype = mGameModel.SelectingGroundType.Value;
-                MapGroundConfigData data = mMapMakerSystem.GetMapGroundConfigDataByGroundTypeInt(groundtype);
-
-                transform.Find("Name").GetComponent<Text>()
-                    .text = data.GroundName;
-                transform.Find("Description").GetComponent<Text>()
-                    .text = data.Description;
-                transform.Find("Speed").GetComponent<Text>()
-                    .text = "";
-                transform.Find("Flying").GetComponent<Text>()
-                    .text = "";
-
-                //string str = data.GroundType == EMapGroundType.Mountain ? "Life: " + mMapMakerSystem. + " / 2";
-                transform.Find("Life").GetComponent<Text>()
-                    .text = "";
-
+                OnSelectingGroundTypeChanged(groundtype);
             }
             else if (newValue < 3) // Mecha
             {
@@ -66,7 +53,7 @@ namespace OutOfTheBreach
             else if (newValue < 13) // Monster
             {
                 newValue -= 3;
-                MonsterData data = mMonsterModel.Monsters[newValue].monsterData;
+                FDataMonster data = mMonsterModel.Monsters[newValue].monsterData;
 
                 transform.Find("Name").GetComponent<Text>()
                     .text = data.MonsterId;
@@ -80,6 +67,27 @@ namespace OutOfTheBreach
                     .text = mMonsterModel.Monsters[newValue].bIsFlying.Value ? 
                     "Flying Unit" : "Land Unit";
 
+            }
+        }
+
+        private void OnSelectingGroundTypeChanged(int newValue)
+        {
+            if (mGameModel.SelectingUnitId.Value == -2)
+            {
+                FDataMapGround data = mMapMakerSystem.GetMapGroundConfigDataByGroundTypeInt(newValue);
+
+                transform.Find("Name").GetComponent<Text>()
+                    .text = data.GroundName;
+                transform.Find("Description").GetComponent<Text>()
+                    .text = data.Description;
+                transform.Find("Speed").GetComponent<Text>()
+                    .text = "";
+                transform.Find("Flying").GetComponent<Text>()
+                    .text = "";
+
+                //string str = data.GroundType == EMapGroundType.Mountain ? "Life: " + mMapMakerSystem. + " / 2";
+                transform.Find("Life").GetComponent<Text>()
+                    .text = "";
             }
         }
 

@@ -8,14 +8,14 @@ namespace OutOfTheBreach
     {
         Material GetMateirialByGround(int GroundTypeInt);
         Vector2Int RandomBirthGround();
-        MapGroundConfigData GetMapGroundConfigDataByGroundTypeInt(int GroundTypeInt);
+        FDataMapGround GetMapGroundConfigDataByGroundTypeInt(int GroundTypeInt);
     }
 
     public class SystemGround : AbstractSystem, ISystemGround
     {
         private IModelGround mMapModel;
-        private MapMakerConfigData mMapMakerConfigData;
-        private StyleMapConfigData mStyleMapConfigData;
+        private FDataAllMapGround mMapMakerConfigData;
+        private FDataMapStyle mStyleMapConfigData;
 
         protected override void OnInit()
         {
@@ -25,17 +25,17 @@ namespace OutOfTheBreach
             mMapMakerConfigData = storage.LoadMapMakerConfigData();
             mStyleMapConfigData = mMapMakerConfigData.Styles[Random.Range(0, mMapMakerConfigData.Styles.Length)];
 
-            this.RegisterEvent<GamePrepareEvent>(e =>
+            this.RegisterEvent<EventGamePrepare>(e =>
             {
                 RandomMap();
 
-                this.SendEvent<InitGroundEvent>();
+                this.SendEvent<EventInitGround>();
             });
         }
 
         public Material GetMateirialByGround(int GroundTypeInt)
         {
-            foreach (MapGroundConfigData eachGround in mStyleMapConfigData.Grounds)
+            foreach (FDataMapGround eachGround in mStyleMapConfigData.Grounds)
             {
                 if (GroundTypeInt == ((int)eachGround.GroundType))
                 {
@@ -108,7 +108,7 @@ namespace OutOfTheBreach
             return ret;
         }
 
-        public MapGroundConfigData GetMapGroundConfigDataByGroundTypeInt(int GroundTypeInt)
+        public FDataMapGround GetMapGroundConfigDataByGroundTypeInt(int GroundTypeInt)
         {
             return mStyleMapConfigData.Grounds[GroundTypeInt];
         }

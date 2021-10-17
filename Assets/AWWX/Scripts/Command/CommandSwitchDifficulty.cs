@@ -2,7 +2,7 @@ using FrameworkDesign;
 
 namespace OutOfTheBreach
 {
-    public class SwitchDifficultyCommand : AbstractCommand
+    public class CommandSwitchDifficulty : AbstractCommand
     {
         protected override void OnExecute()
         {

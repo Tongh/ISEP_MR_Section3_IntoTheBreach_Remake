@@ -25,13 +25,13 @@ namespace OutOfTheBreach
                 {
                     gameObject.SetActive(false);
 
-                    this.SendCommand<PrepareGameCommand>();
+                    this.SendCommand<CommandPrepareGame>();
                 });
 
             transform.Find("TopBarPanel/BtnDifficulty").GetComponent<Button>()
                 .onClick.AddListener(() =>
                 {
-                    this.SendCommand<SwitchDifficultyCommand>();
+                    this.SendCommand<CommandSwitchDifficulty>();
                 });
 
             OnDifficultyChanged(mGameModel.Difficulty.Value);

@@ -3,13 +3,13 @@ using System;
 namespace OutOfTheBreach
 {
     [Serializable]
-    public struct AbilityConfigData
+    public struct FDataAllAbility
     {
-        public AbilityData[] AbilitiesData;
+        public FDataAbility[] AbilitiesData;
     }
 
     [Serializable]
-    public struct AbilityData
+    public struct FDataAbility
     {
         public string AbilityId;
         public string Description;
@@ -20,13 +20,13 @@ namespace OutOfTheBreach
     }
 
     [Serializable]
-    public struct EffectConfigData
+    public struct FDataAllEffect
     {
-        public EffectData[] EffectsData;
+        public FDataEffect[] EffectsData;
     }
 
     [Serializable]
-    public struct EffectData
+    public struct FDataEffect
     {
         public string EffectId;
         public string Description;

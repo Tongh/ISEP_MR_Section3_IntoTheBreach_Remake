@@ -4,21 +4,21 @@ using UnityEngine;
 namespace OutOfTheBreach
 {
     [Serializable]
-    public struct MapMakerConfigData
+    public struct FDataAllMapGround
     {
-        public StyleMapConfigData[] Styles;
+        public FDataMapStyle[] Styles;
     }
 
     [Serializable]
-    public struct StyleMapConfigData
+    public struct FDataMapStyle
     {
         public string StyleId;
         public string StyleName;
-        public MapGroundConfigData[] Grounds;
+        public FDataMapGround[] Grounds;
     } 
 
     [Serializable]
-    public struct MapGroundConfigData
+    public struct FDataMapGround
     {
         public ETypeGround GroundType;
         public string GroundName;

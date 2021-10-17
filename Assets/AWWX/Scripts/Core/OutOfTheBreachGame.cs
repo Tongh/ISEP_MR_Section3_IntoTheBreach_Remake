@@ -9,14 +9,14 @@ namespace OutOfTheBreach
             RegisterModel<IGameModel>(new GameModel());
             RegisterModel<IModelGround>(new ModelGround());
             RegisterModel<IModelMecha>(new ModelMecha());
-            RegisterModel<IMonsterModel>(new MonsterModel());
+            RegisterModel<IModelMonster>(new ModelMonster());
 
             RegisterSystem<ISystemGround>(new SystemGround());
             RegisterSystem<ISystemMecha>(new SystemMecha());
-            RegisterSystem<IMonsterSystem>(new MonsterSystem());
+            RegisterSystem<ISystemMonster>(new SystemMonster());
             //RegisterSystem<ITurnSystem>(new TurnSystem());
 
-            RegisterUtility<IStorage>(new JsonStorage());
+            RegisterUtility<IStorage>(new StorageJson());
         }
     }
 }

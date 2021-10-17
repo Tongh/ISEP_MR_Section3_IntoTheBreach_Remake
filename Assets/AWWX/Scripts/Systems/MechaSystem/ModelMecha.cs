@@ -4,7 +4,7 @@ namespace OutOfTheBreach
 {
     public interface IModelMecha : IModel
     {
-        FDataMecha [] Mechas { get; }
+        FPropertyMecha [] Mechas { get; }
     }
 
     public class ModelMecha : AbstractModel, IModelMecha
@@ -14,13 +14,13 @@ namespace OutOfTheBreach
             ResetArray();
         }
 
-        public FDataMecha [] Mechas { get; } = new FDataMecha[3];
+        public FPropertyMecha [] Mechas { get; } = new FPropertyMecha[3];
 
         private void ResetArray()
         {
             for (int i = 0; i < 3; i++)
             {
-                Mechas[i] = new FDataMecha(i);
+                Mechas[i] = new FPropertyMecha(i);
             }
         }
     }
