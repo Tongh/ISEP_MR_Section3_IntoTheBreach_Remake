@@ -1,4 +1,5 @@
 using FrameworkDesign;
+using UnityEngine;
 
 namespace OutOfTheBreach
 {
@@ -9,6 +10,8 @@ namespace OutOfTheBreach
             var gameModel = this.GetModel<IGameModel>();
 
             gameModel.GameState.Value = (int)EGameState.GamePreparing;
+
+            Debug.Log("Game State Update to [" + nameof(EGameState.GamePreparing) + "]");
 
             this.SendEvent<EventGamePrepare>();
         }

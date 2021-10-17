@@ -5,6 +5,7 @@ namespace OutOfTheBreach
     public interface IGameModel : IModel
     {
         BindableProperty<int> GameState { get; }
+        BindableProperty<int> TurnPhase { get; }
         BindableProperty<int> Difficulty { get; }
         BindableProperty<int> Energy { get; }
         BindableProperty<int> TurnLeft { get; }
@@ -23,6 +24,11 @@ namespace OutOfTheBreach
         public BindableProperty<int> GameState { get; } = new BindableProperty<int>()
         {
             Value = (int)EGameState.GameSetting
+        };
+
+        public BindableProperty<int> TurnPhase { get; } = new BindableProperty<int>()
+        {
+            Value = (int)ETurnState.None
         };
 
         public BindableProperty<int> Difficulty { get; } = new BindableProperty<int>()

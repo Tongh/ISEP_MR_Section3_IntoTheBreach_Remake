@@ -1,6 +1,7 @@
 using UnityEngine;
 using FrameworkDesign;
 using System.Collections;
+using UnityEngine.Assertions;
 
 namespace OutOfTheBreach
 {
@@ -16,6 +17,7 @@ namespace OutOfTheBreach
 
         private void OnMouseDown()
         {
+            Assert.IsNotNull(mGameModel, "Click too early!");
             mGameModel.SelectingUnitId.Value = Id;
         }
 

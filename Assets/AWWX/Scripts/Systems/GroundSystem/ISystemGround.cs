@@ -9,6 +9,7 @@ namespace OutOfTheBreach
         Material GetMateirialByGround(int GroundTypeInt);
         Vector2Int RandomBirthGround();
         FDataMapGround GetMapGroundConfigDataByGroundTypeInt(int GroundTypeInt);
+        bool IsLocationValidForStanding(Vector2Int Loc2);
     }
 
     public class SystemGround : AbstractSystem, ISystemGround
@@ -111,6 +112,24 @@ namespace OutOfTheBreach
         public FDataMapGround GetMapGroundConfigDataByGroundTypeInt(int GroundTypeInt)
         {
             return mStyleMapConfigData.Grounds[GroundTypeInt];
+        }
+
+        public bool IsLocationValidForStanding(Vector2Int Loc2)
+        {
+            int groundtype = mMapModel.GroundTypeMap[Loc2.x, Loc2.y].Value;
+            bool GroundCanStand =
+                groundtype == (int)ETypeGround.Ground ||
+                groundtype == (int)ETypeGround.Special ||
+                groundtype == (int)ETypeGround.Water;
+
+            bool someonehere = mMapModel.bIsSomeoneHereMap[Loc2.x, Loc2.y].Value;
+
+            if (GroundCanStand && !someonehere)
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }

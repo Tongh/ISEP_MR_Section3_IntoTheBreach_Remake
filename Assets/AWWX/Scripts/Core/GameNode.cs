@@ -9,6 +9,10 @@ namespace OutOfTheBreach
         {
         }
 
+        private void Update()
+        {
+        }
+
         public IArchitecture GetArchitecture()
         {
             return OutOfTheBreachGame.Interface;

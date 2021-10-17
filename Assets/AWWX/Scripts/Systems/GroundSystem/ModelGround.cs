@@ -1,6 +1,4 @@
 using FrameworkDesign;
-using System.Collections.Generic;
-using UnityEngine;
 
 namespace OutOfTheBreach
 {

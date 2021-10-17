@@ -12,6 +12,7 @@ namespace OutOfTheBreach
         public BindableProperty<int> Speed;
         public BindableProperty<bool> bIsFlying;
         public BindableProperty<bool> bIsInPlace;
+        public BindableProperty<bool> bIsInPlacing;
         public BindableProperty<bool> bIsAlive;
         public BindableProperty<Vector2Int> Position;
         public BindableProperty<Vector2Int> Direction;
@@ -25,6 +26,7 @@ namespace OutOfTheBreach
             Speed = new BindableProperty<int>() { Value = 0 };
             bIsFlying = new BindableProperty<bool>() { Value = false };
             bIsInPlace = new BindableProperty<bool>() { Value = false };
+            bIsInPlacing = new BindableProperty<bool>() { Value = false };
             bIsAlive = new BindableProperty<bool>() { Value = true };
             Position = new BindableProperty<Vector2Int>() { Value = Vector2Int.zero };
             Direction = new BindableProperty<Vector2Int>() { Value = Vector2Int.up };

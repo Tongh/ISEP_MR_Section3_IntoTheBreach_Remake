@@ -2,6 +2,7 @@ namespace OutOfTheBreach
 {
     public enum ETurnState
     {
+        None,
         TurnBeginning,
         MonsterMovePhase, // Monster Move To Target
         FutureShowing, // Monster Attack Target & New Monster Position

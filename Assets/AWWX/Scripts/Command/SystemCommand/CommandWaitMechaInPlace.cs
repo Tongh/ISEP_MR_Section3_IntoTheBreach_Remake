@@ -1,4 +1,5 @@
 using FrameworkDesign;
+using UnityEngine;
 using UnityEngine.Assertions;
 
 namespace OutOfTheBreach
@@ -12,7 +13,12 @@ namespace OutOfTheBreach
             Assert.IsTrue(gameModel.GameState.Value == (int)EGameState.MonsterComing, nameof(EGameState.MechaInPlacing) + " must after " + nameof(EGameState.MonsterComing));
             gameModel.GameState.Value = (int)EGameState.MechaInPlacing;
 
-            this.SendEvent<EventMechaInPlacing>();
+            Debug.Log("Game State Update to [" + nameof(EGameState.MechaInPlacing) + "]");
+
+            this.SendEvent<EventMechaInPlacing>(new EventMechaInPlacing()
+            {
+                MechaIndex = 0
+            });
         }
     }
 }

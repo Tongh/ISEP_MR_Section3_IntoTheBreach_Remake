@@ -1,4 +1,5 @@
 using FrameworkDesign;
+using UnityEngine;
 using UnityEngine.Assertions;
 
 namespace OutOfTheBreach
@@ -10,6 +11,7 @@ namespace OutOfTheBreach
         int GetMechasNum();
         FDataMecha GetMechaDataById(string id);
         FDataMecha GetMechaDataByInt(int index);
+        void NextPlacingMecha();
     }
 
     public class SystemMecha : AbstractSystem, ISystemMecha
@@ -18,6 +20,8 @@ namespace OutOfTheBreach
         private IModelMecha mMechaModel;
         private FDataAllMecha mMechaConfigData;
 
+        private int MechasWaitingForPlacing = 0;
+
         protected override void OnInit()
         {
             mGameModel = this.GetModel<IGameModel>();
@@ -25,7 +29,6 @@ namespace OutOfTheBreach
             var storage = this.GetUtility<IStorage>();
 
             mMechaConfigData = storage.LoadMechaConfigData();
-
 
             for (int i = 0; i < mGameModel.MechaModels.Length; i++)
             {
@@ -39,6 +42,7 @@ namespace OutOfTheBreach
 
             this.RegisterEvent<EventMechaInPlacing>(e =>
             {
+                NextPlacingMecha();
             });
         }
 
@@ -81,6 +85,29 @@ namespace OutOfTheBreach
         public FDataMecha GetMechaDataByInt(int index)
         {
             return GetMechaDataById(GetMechaIdByInt(index));
+        }
+
+        public void NextPlacingMecha()
+        {
+            if (MechasWaitingForPlacing != 0)
+            {
+                mMechaModel.Mechas[MechasWaitingForPlacing - 1].bIsInPlacing.Value = false;
+                if (MechasWaitingForPlacing == 3)
+                {
+                    Assert.IsTrue(mGameModel.GameState.Value == (int)EGameState.MechaInPlacing, nameof(EGameState.Gameing) + " must after " + nameof(EGameState.MechaInPlacing));
+                    mGameModel.GameState.Value = (int)EGameState.Gameing;
+
+                    Debug.Log("Game State Update to [" + nameof(EGameState.Gameing) + "]");
+
+                    this.SendEvent<EventGameBegin>();
+                }
+            }
+            if (MechasWaitingForPlacing != 3)
+            {
+                mMechaModel.Mechas[MechasWaitingForPlacing].bIsInPlacing.Value = true;
+                MechasWaitingForPlacing++;
+            }
+
         }
     }
 }

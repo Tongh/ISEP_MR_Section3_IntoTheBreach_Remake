@@ -1,4 +1,5 @@
 using FrameworkDesign;
+using UnityEngine;
 using UnityEngine.Assertions;
 
 namespace OutOfTheBreach
@@ -11,6 +12,8 @@ namespace OutOfTheBreach
 
             Assert.IsTrue(gameModel.GameState.Value == (int)EGameState.MonsterPreparing, nameof(EGameState.MonsterComing) + " must after " + nameof(EGameState.MonsterPreparing));
             gameModel.GameState.Value = (int)EGameState.MonsterComing;
+
+            Debug.Log("Game State Update to [" + nameof(EGameState.MonsterComing) + "]");
 
             this.SendEvent<EventMonsterCome>();
         }
