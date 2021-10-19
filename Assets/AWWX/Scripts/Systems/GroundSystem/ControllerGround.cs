@@ -41,7 +41,20 @@ namespace OutOfTheBreach
         private void OnGroundChanged(int GroundType)
         {
             mGroundType = GroundType;
-            GetComponent<MeshRenderer>().material =  mMapMakerSystem.GetMateirialByGround(GroundType);
+            GetComponent<MeshRenderer>().material = mMapMakerSystem.GetMateirialByGround(GroundType);
+
+            foreach (Transform child in transform)
+            {
+                Destroy(child);
+            }
+
+            GameObject DecorationPrefab;
+            if (mMapMakerSystem.GetDecorationByGround(GroundType, out DecorationPrefab))
+            {
+                GameObject Decoration = Instantiate(DecorationPrefab);
+                Decoration.transform.parent = transform;
+                Decoration.transform.localPosition = Vector3.zero;
+            }
         }
 
         IArchitecture IBelongToArchitecture.GetArchitecture()

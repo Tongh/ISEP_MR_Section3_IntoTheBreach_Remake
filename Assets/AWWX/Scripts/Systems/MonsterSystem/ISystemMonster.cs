@@ -47,9 +47,9 @@ namespace OutOfTheBreach
                 {
                     Vector2Int loc = mMonsterModel.Monsters[i].Position.Value;
                     int speed = mMonsterModel.Monsters[i].Speed.Value;
-                    Vector2Int target = mSystemGround.GetRandomTargetLocCanAttack(loc, speed);
+                    Vector2Int pos;
+                    Vector2Int target = mSystemGround.GetRandomTargetLocCanAttack(loc, speed, out pos);
                     mMonsterModel.Monsters[i].TargetPosition.Value = target;
-                    Vector2Int pos = mSystemGround.GetLocToAttack(target, loc, speed);
                     mMonsterModel.Monsters[i].Position.Value = pos;
                 }
             }

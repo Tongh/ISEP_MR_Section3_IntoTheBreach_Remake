@@ -5,10 +5,13 @@ namespace OutOfTheBreach
 {
     public class FPropertyMecha
     {
+        public FDataMecha mechaData;
+
         public BindableProperty<int> ID;
         public BindableProperty<string> NickName;
         public BindableProperty<string> MechaModel;
         public BindableProperty<int> Life;
+        public BindableProperty<int> MaxLife;
         public BindableProperty<int> Speed;
         public BindableProperty<bool> bIsFlying;
         public BindableProperty<bool> bIsInPlace;
@@ -19,10 +22,12 @@ namespace OutOfTheBreach
 
         public FPropertyMecha(int id)
         {
+            mechaData = new FDataMecha();
             ID = new BindableProperty<int>() { Value = id };
             NickName = new BindableProperty<string>() { Value = "" };
             MechaModel = new BindableProperty<string>() { Value = "" };
             Life = new BindableProperty<int>() { Value = 0 };
+            MaxLife = new BindableProperty<int>() { Value = 0 };
             Speed = new BindableProperty<int>() { Value = 0 };
             bIsFlying = new BindableProperty<bool>() { Value = false };
             bIsInPlace = new BindableProperty<bool>() { Value = false };

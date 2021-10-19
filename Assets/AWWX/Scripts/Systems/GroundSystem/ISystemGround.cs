@@ -8,12 +8,14 @@ namespace OutOfTheBreach
     public interface ISystemGround : ISystem
     {
         Material GetMateirialByGround(int GroundTypeInt);
+        bool GetDecorationByGround(int GroundTypeInt, out GameObject PrefabObject);
         Vector2Int RandomBirthGround();
         FDataMapGround GetMapGroundConfigDataByGroundTypeInt(int GroundTypeInt);
         bool IsLocationValidForStanding(Vector2Int Loc2);
-        Vector2Int GetRandomTargetLocCanAttack(Vector2Int MyLoc, int Speed);
+        Vector2Int GetRandomTargetLocCanAttack(Vector2Int MyLoc, int Speed, out Vector2Int StandPosition);
         Vector2Int GetLocToAttack(Vector2Int Target, Vector2Int MyLoc, int Speed);
         List<Vector2Int> GetAllLocationsCanMoveTo(Vector2Int MyLoc, int Speed);
+        void EntityStandingChanged(int x, int y, int type);
     }
 
     public class SystemGround : AbstractSystem, ISystemGround
@@ -136,23 +138,29 @@ namespace OutOfTheBreach
             return false;
         }
 
-        private List<Vector2Int> GetAllTargetLocCanAttack(List<Vector2Int> AllLocs)
+        private Dictionary<Vector2Int, List<Vector2Int>> GetAllTargetLocCanAttack(List<Vector2Int> AllLocs)
         {
-            List<Vector2Int> ret = new List<Vector2Int>();
+            Dictionary<Vector2Int, List<Vector2Int>> map = new Dictionary<Vector2Int, List<Vector2Int>>();
 
             foreach (Vector2Int eachLoc in AllLocs)
             {
+                List<Vector2Int> temp = new List<Vector2Int>();
                 foreach (Vector2Int eachAdjcent in GetAdjcentLocs(eachLoc))
                 {
                     int StandingUnit = mMapModel.StandingMap[eachAdjcent.x, eachAdjcent.y].Value;
                     if (StandingUnit == 1 || StandingUnit == 3)
                     {
-                        ret.Add(eachAdjcent);
+                        temp.Add(eachAdjcent);
                     }
+                }
+
+                if (temp.Count > 0)
+                {
+                    map.Add(eachLoc, temp);
                 }
             }
 
-            return ret;
+            return map;
         }
 
         private List<Vector2Int> GetAdjcentLocs(Vector2Int loc)
@@ -198,17 +206,23 @@ namespace OutOfTheBreach
             return ret;
         }
 
-        public Vector2Int GetRandomTargetLocCanAttack(Vector2Int MyLoc, int Speed)
+        public Vector2Int GetRandomTargetLocCanAttack(Vector2Int MyLoc, int Speed, out Vector2Int StandPosition)
         {
             List<Vector2Int> allLocsCanMoveTo = GetAllLocationsCanMoveTo(MyLoc, Speed);
-            List<Vector2Int> allTargetLocsCanAttack = GetAllTargetLocCanAttack(allLocsCanMoveTo);
+            Dictionary<Vector2Int, List<Vector2Int>> allTargetLocsCanAttack = GetAllTargetLocCanAttack(allLocsCanMoveTo);
+            List<Vector2Int> Keys = new List<Vector2Int>(allTargetLocsCanAttack.Keys);
 
-            if (allTargetLocsCanAttack.Count < 1)
+            if (Keys.Count < 1)
             {
+                StandPosition = allLocsCanMoveTo[Random.Range(0, allLocsCanMoveTo.Count)];
                 return new Vector2Int(-1, -1);
             }
 
-            return allTargetLocsCanAttack[Random.Range(0, allTargetLocsCanAttack.Count)];
+            StandPosition = Keys[Random.Range(0, Keys.Count)];
+            
+            List<Vector2Int> Value =allTargetLocsCanAttack[StandPosition];
+
+            return Value[Random.Range(0, Value.Count)];
         }
 
         public Vector2Int GetLocToAttack(Vector2Int Target, Vector2Int MyLoc, int Speed)
@@ -230,6 +244,33 @@ namespace OutOfTheBreach
                 }
             }
             return possibles[Random.Range(0, possibles.Count)];
+        }
+
+        public void EntityStandingChanged(int x, int y, int type)
+        {
+            mMapModel.StandingMap[x, y].Value = type;
+        }
+
+        public bool GetDecorationByGround(int GroundTypeInt, out GameObject PrefabObject)
+        {
+            PrefabObject = null;
+            foreach (FDataMapGround eachGround in mStyleMapConfigData.Grounds)
+            {
+                if (GroundTypeInt == ((int)eachGround.GroundType))
+                {
+                    string PrefabRes = GetGroundDecorationRessourceString(eachGround.GroundType);
+                    PrefabObject = Resources.Load(PrefabRes, typeof(GameObject)) as GameObject;
+
+                    return PrefabObject != null;
+                }
+            }
+            Assert.IsTrue(false, "Prefab is null!");
+            return false;
+        }
+
+        private string GetGroundDecorationRessourceString(ETypeGround GroundType)
+        {
+            return "Prefabs/Decoration/" + GroundType.ToString();
         }
     }
 }

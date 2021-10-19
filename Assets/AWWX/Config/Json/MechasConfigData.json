@@ -3,21 +3,21 @@
       {
         "MechaId": "F91",
         "Description": "Mecha that is good at close hand-to-hand combat.",
-        "Speed": 4,
+        "Speed": 3,
         "Life": 3,
         "bIsFlying": 0
       },
       {
         "MechaId": "Siren",
         "Description": "Mecha flying in the air for remote assistance.",
-        "Speed": 5,
+        "Speed": 4,
         "Life": 2,
         "bIsFlying": 1
       },
       {
         "MechaId": "EVA-01",
         "Description": "Mecha for long-range fire support.",
-        "Speed": 4,
+        "Speed": 3,
         "Life": 3,
         "bIsFlying": 0
       },

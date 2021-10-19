@@ -1,11 +1,13 @@
 using UnityEngine;
 using FrameworkDesign;
 using System.Collections;
+using UnityEngine.Assertions;
 
 namespace OutOfTheBreach
 {
     public class ControllerMecha : MonoBehaviour, IController
     {
+        private IGameModel mGameModel;
         private IModelMecha mModelMecha;
         private ISystemMouse mSystemMouse;
         private ISystemMecha mSystemMecha;
@@ -18,10 +20,16 @@ namespace OutOfTheBreach
 
         private void Start()
         {
+            mGameModel = this.GetModel<IGameModel>();
             mModelMecha = this.GetModel<IModelMecha>();
             mSystemMouse = this.GetSystem<ISystemMouse>();
             mSystemMecha = this.GetSystem<ISystemMecha>();
             mSystemGround = this.GetSystem<ISystemGround>();
+
+            FDataMecha mechaData = mSystemMecha.GetMechaDataByInt(id);
+
+            mModelMecha.Mechas[id].mechaData = mechaData;
+
             mModelMecha.Mechas[id].bIsInPlacing.RegisterOnValueChanged(OnbIsInPlacingChanged);
         }
 
@@ -37,6 +45,8 @@ namespace OutOfTheBreach
 
         private void OnMouseDown()
         {
+            Assert.IsNotNull(mGameModel, "Click too early!");
+            mGameModel.SelectingUnitId.Value = id;
         }
 
         private IEnumerator Eject()
@@ -105,6 +115,9 @@ namespace OutOfTheBreach
                 if (CoroutineEjection == null)
                 {
                     CoroutineEjection = StartCoroutine(Eject());
+
+                    var mSystemGround = this.GetSystem<ISystemGround>();
+                    mSystemGround.EntityStandingChanged((int)transform.position.x, (int)transform.position.z, 1);
                 }
             }
         }

@@ -47,8 +47,19 @@ namespace OutOfTheBreach
             }
             else if (newValue < 3) // Mecha
             {
-                //transform.Find("Name").GetComponent<Text>()
-                //    .text = mMechaModel.Mechas[newValue].NickName.Value;
+                FDataMecha data = mMechaModel.Mechas[newValue].mechaData;
+
+                transform.Find("Name").GetComponent<Text>()
+                    .text = data.MechaId;
+                transform.Find("Description").GetComponent<Text>()
+                    .text = data.Description;
+                transform.Find("Life").GetComponent<Text>()
+                    .text = "Life: " + mMechaModel.Mechas[newValue].Life.Value + " / " + mMechaModel.Mechas[newValue].MaxLife.Value;
+                transform.Find("Speed").GetComponent<Text>()
+                    .text = "Speed: " + mMechaModel.Mechas[newValue].Speed.Value;
+                transform.Find("Flying").GetComponent<Text>()
+                    .text = mMechaModel.Mechas[newValue].bIsFlying.Value ?
+                    "Flying Unit" : "Land Unit";
             }
             else if (newValue < 13) // Monster
             {
@@ -66,7 +77,6 @@ namespace OutOfTheBreach
                 transform.Find("Flying").GetComponent<Text>()
                     .text = mMonsterModel.Monsters[newValue].bIsFlying.Value ? 
                     "Flying Unit" : "Land Unit";
-
             }
         }
 
