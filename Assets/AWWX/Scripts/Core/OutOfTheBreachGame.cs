@@ -18,6 +18,7 @@ namespace OutOfTheBreach
             RegisterSystem<ISystemMouse>(new SystemMouse());
             RegisterSystem<ISystemDummy>(new SystemDummy());
             RegisterSystem<ISystemTurn>(new SystemTurn());
+            RegisterSystem<ISystemAbility>(new SystemAbility());
 
             RegisterUtility<IStorage>(new StorageJson());
         }

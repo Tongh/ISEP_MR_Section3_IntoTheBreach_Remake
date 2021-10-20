@@ -8,5 +8,7 @@ namespace OutOfTheBreach
         FDataAllMapGround LoadMapMakerConfigData();
         FDataAllMecha LoadMechaConfigData();
         FDataAllMonster LoadMonsterConfigData();
+        FDataAllAbility LoadAbilitiesConfigData();
+        FDataAllEffect LoadEffectsConfigData();
     }
 }

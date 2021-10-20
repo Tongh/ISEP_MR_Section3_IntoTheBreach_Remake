@@ -24,6 +24,18 @@ namespace OutOfTheBreach
             const string FileName = "MonstersConfigData.json";
             return ReadJsonStructFromFile<FDataAllMonster>(FileName);
         }
+
+        public override FDataAllAbility LoadAbilitiesConfigData()
+        {
+            const string FileName = "AbilitiesConfigData.json";
+            return ReadJsonStructFromFile<FDataAllAbility>(FileName);
+        }
+
+        public override FDataAllEffect LoadEffectsConfigData()
+        {
+            const string FileName = "EffectsConfigData.json";
+            return ReadJsonStructFromFile<FDataAllEffect>(FileName);
+        }
     }
 
     public abstract class IStorageJson : IStorage
@@ -67,5 +79,7 @@ namespace OutOfTheBreach
         public abstract FDataAllMapGround LoadMapMakerConfigData();
         public abstract FDataAllMecha LoadMechaConfigData();
         public abstract FDataAllMonster LoadMonsterConfigData();
+        public abstract FDataAllAbility LoadAbilitiesConfigData();
+        public abstract FDataAllEffect LoadEffectsConfigData();
     }
 }
