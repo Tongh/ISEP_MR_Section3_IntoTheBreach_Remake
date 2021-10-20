@@ -36,5 +36,18 @@ namespace OutOfTheBreach
             Position = new BindableProperty<Vector2Int>() { Value = Vector2Int.zero };
             Direction = new BindableProperty<Vector2Int>() { Value = Vector2Int.up };
         }
+
+        public void InitByMechaData(FDataMecha inMechaData)
+        {
+            mechaData = inMechaData;
+            NickName.Value = mechaData.MechaId + "-" + ID.ToString();
+            MechaModel.Value = mechaData.MechaId;
+            Life.Value = mechaData.Life;
+            MaxLife.Value = mechaData.Life;
+            Speed.Value = mechaData.Speed;
+            bIsFlying.Value = mechaData.bIsFlying;
+            bIsAlive.Value = true;
+            bIsInPlace.Value = true;
+        }
     }
 }

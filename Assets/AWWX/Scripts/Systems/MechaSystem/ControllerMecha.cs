@@ -118,6 +118,8 @@ namespace OutOfTheBreach
 
                     var mSystemGround = this.GetSystem<ISystemGround>();
                     mSystemGround.EntityStandingChanged((int)transform.position.x, (int)transform.position.z, 1);
+
+                    mModelMecha.Mechas[id].InitByMechaData(mSystemMecha.GetMechaDataByInt(id));
                 }
             }
         }
