@@ -148,7 +148,8 @@ namespace OutOfTheBreach
                 foreach (Vector2Int eachAdjcent in GetAdjcentLocs(eachLoc))
                 {
                     int StandingUnit = mMapModel.StandingMap[eachAdjcent.x, eachAdjcent.y].Value;
-                    if (StandingUnit == 1 || StandingUnit == 3)
+                    //if (StandingUnit == 1 || StandingUnit == 3)
+                    if (StandingUnit == 3)
                     {
                         temp.Add(eachAdjcent);
                     }
